@@ -116,6 +116,24 @@ export const constantRoutes = [
 */
 export const asyncRoutes = [
   {
+    path: '/balance',
+    component: Layout,
+    // redirect: '/balance/show',
+    alwaysShow: true,
+    meta: { title: '机器人资产统计', icon: 'chart' },
+    children: [
+      {
+        path: 'show1',
+        component: () => import('@/views/balance/singleSymbol'),
+        // component: () => import('@/views/balance/singleSymbol'),
+
+        name: 'hello',
+        meta: { title: 'charts' }
+      }
+    ]
+  },
+
+  {
     path: '/permission',
     component: Layout,
     redirect: '/permission/index',

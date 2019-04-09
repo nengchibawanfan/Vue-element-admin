@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import echarts from 'echarts'
 
 import Cookies from 'js-cookie'
 
@@ -6,6 +7,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import Element from 'element-ui'
 import './styles/element-variables.scss'
+Vue.prototype.$echarts = echarts
 
 import '@/styles/index.scss' // global css
 
