@@ -13,7 +13,12 @@ function getBalanceData(params) {
   return axios.get('http://127.0.0.1:5000/total_balance_data', { params: params })
 }
 
+function getAllSymbolBalance(params) {
+  return axios.get('http://127.0.0.1:5000/all_symbol_balance', { params: params })
+}
+
 module.exports = {
-  getBalanceData
+  getBalanceData,
+  getAllSymbolBalance
 }
 

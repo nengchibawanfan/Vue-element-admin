@@ -1,8 +1,22 @@
 <template>
-  <!--   <div class="app-container">
-        <el-input v-model="filename" :placeholder="$t('zip.placeholder')" style="width:300px;" prefix-icon="el-icon-document" />
-  </div> -->
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <div>
+    <div class="inputDiv">
+      <form>
+        <el-input v-model="symbolName" placeholder="请输入CoinId" class="symbol-input" />
+        <select v-model="exchangeName" class="exchange-select">
+          <option disabled value="">请选择交易所</option>
+          <option>bytetrade</option>
+          <option>bytetrade_witness</option>
+          <option>huobipro_xiaocong</option>
+          <option>binanace</option>
+          <option>okex</option>
+        </select>
+        <input type="button" value="提交" @click="getdata">
+      </form>
+    </div>
+    <div :id="id" :class="className" :style="{height:hh,width:width}" />
+  </div>
+
 </template>
 
 <script>
@@ -23,16 +37,20 @@ export default {
     },
     width: {
       type: String,
-      default: '200px'
+      default: '800px'
     },
     height: {
       type: String,
-      default: '200px'
+      default: '800px'
     }
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      hh: '650px',
+      ww: '800px',
+      symbolName: '',
+      exchangeName: ''
     }
   },
   mounted() {
@@ -49,8 +67,8 @@ export default {
     getdata() {
       const self = this
       const params = {
-        'exchange': 'bytetrade',
-        'coinid': 35
+        'exchange': self.exchangeName || 'ByteTrade',
+        'coinid': self.symbolName || ''
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)
@@ -67,7 +85,8 @@ export default {
       this.chart.setOption({
         backgroundColor: '#344b58',
         title: {
-          text: 'MixChart',
+          text: '单个资产详情',
+          subtext: data.coinname,
           x: '20',
           top: '20',
           textStyle: {
@@ -98,7 +117,7 @@ export default {
           }
         },
         legend: {
-          x: '5%',
+          // x: '5%',
           top: '10%',
           textStyle: {
             color: '#90979c'
@@ -275,3 +294,11 @@ export default {
   }
 }
 </script>
+
+<style type="text/css">
+  .symbol-input {
+    padding: 10px;
+    width: 300px;
+  }
+
+</style>
