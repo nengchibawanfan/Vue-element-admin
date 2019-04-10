@@ -8,7 +8,7 @@
           <option>bytetrade</option>
           <option>bytetrade_witness</option>
           <option>huobipro_xiaocong</option>
-          <option>binanace</option>
+          <option>binance</option>
           <option>okex</option>
         </select>
         <input type="button" value="提交" @click="getdata">
