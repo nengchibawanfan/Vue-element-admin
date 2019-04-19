@@ -93,7 +93,7 @@ export default {
         },
         series: [
           {
-            name: 'btt',
+            name: 'ETH',
             type: 'line',
             stack: '总消耗',
             data: data.amount
