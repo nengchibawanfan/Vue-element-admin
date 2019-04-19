@@ -1,4 +1,4 @@
-allSymbol.vue<template>
+<template>
   <!--   <div class="app-container">
         <el-input v-model="filename" :placeholder="$t('zip.placeholder')" style="width:300px;" prefix-icon="el-icon-document" />
   </div> -->
@@ -84,7 +84,8 @@ export default {
             textStyle: {
               color: '#fff'
             }
-          }
+          },
+          formatter: '{a} <br/>{b} : {c} ({d}%)<br/>'
         },
         grid: {
           left: '5%',
@@ -130,7 +131,7 @@ export default {
         calculable: true,
         series: [
           {
-            name: '访问来源',
+            name: '资产信息',
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],

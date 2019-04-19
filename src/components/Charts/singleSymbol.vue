@@ -3,6 +3,7 @@
     <div class="inputDiv">
       <form>
         <el-input v-model="symbolName" placeholder="请输入CoinId" class="symbol-input" />
+
         <select v-model="exchangeName" class="exchange-select">
           <option disabled value="">请选择交易所</option>
           <option>bytetrade</option>
@@ -11,6 +12,11 @@
           <option>binance</option>
           <option>okex</option>
         </select>
+        <!--
+        <el-input v-model="startDate" placeholder="开始时间" class="date-input" />
+        <el-input v-model="endDate" placeholder="结束时间" class="date-input" />
+ -->
+
         <input type="button" value="提交" @click="getdata">
       </form>
     </div>
@@ -297,6 +303,10 @@ export default {
 
 <style type="text/css">
   .symbol-input {
+    padding: 10px;
+    width: 300px;
+  }
+  .date-input {
     padding: 10px;
     width: 300px;
   }

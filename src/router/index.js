@@ -129,10 +129,43 @@ export const asyncRoutes = [
         meta: { title: '单个资产情况' }
       },
       {
-        path: 'allSymbol',
-        component: () => import('@/views/balance/allSymbol'),
+        path: 'allSymbolDistribution',
+        component: () => import('@/views/balance/allSymbolDistribution'),
         name: 'hello',
         meta: { title: '所有资产分布' }
+      },
+      {
+        path: 'allSymbolInfo',
+        component: () => import('@/views/balance/allSymbolInfo'),
+        name: 'hello',
+        meta: { title: '所有资产信息' }
+      },
+      {
+        path: 'totalETH',
+        component: () => import('@/views/balance/totalETH'),
+        name: 'hello',
+        meta: { title: '做市总ETH数量' }
+      }
+    ]
+  },
+  {
+    path: '/service_charge',
+    component: Layout,
+    // redirect: '/balance/show',
+    alwaysShow: true,
+    meta: { title: '手续费消耗统计', icon: 'chart' },
+    children: [
+      {
+        path: 'btt_info',
+        component: () => import('@/views/charge/bttCharge'),
+        name: 'hello',
+        meta: { title: 'btt情况' }
+      },
+      {
+        path: 'ETH_charge',
+        component: () => import('@/views/charge/ethCharge'),
+        name: 'hello',
+        meta: { title: '所有手续费的消耗(ETH)' }
       }
     ]
   },
