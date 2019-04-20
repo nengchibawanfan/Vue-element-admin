@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-editor-container">
-    <github-corner class="github-corner" />
+    <ByteTrade-corner class="ByteTrade-corner" />
 
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import GithubCorner from '@/components/GithubCorner'
+import ByteTradeCorner from '@/components/ByteTradeCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
 import RaddarChart from './components/RaddarChart'
@@ -73,7 +73,7 @@ const lineChartData = {
 export default {
   name: 'DashboardAdmin',
   components: {
-    GithubCorner,
+    ByteTradeCorner,
     PanelGroup,
     LineChart,
     RaddarChart,
@@ -102,7 +102,7 @@ export default {
   background-color: rgb(240, 242, 245);
   position: relative;
 
-  .github-corner {
+  .ByteTrade-corner {
     position: absolute;
     top: 0px;
     border: 0;

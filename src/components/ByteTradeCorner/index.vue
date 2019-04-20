@@ -1,5 +1,5 @@
 <template>
-  <a href="https://www.bytetrade.io/trade.html" target="_blank" class="Bytetrade-corner" aria-label="View source on Bytetrade">
+  <a href="https://www.bytetrade.io/trade.html" target="_blank" class="ByteTrade-corner" aria-label="View source on ByteTrade">
     <svg
       width="80"
       height="80"
@@ -24,7 +24,7 @@
 </template>
 
 <style scoped>
-.Bytetrade-corner:hover .octo-arm {
+.BytetTade-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out
 }
 
@@ -44,10 +44,10 @@
 }
 
 @media (max-width:500px) {
-  .Bytetrade-corner:hover .octo-arm {
+  .ByteTrade-corner:hover .octo-arm {
     animation: none
   }
-  .Bytetrade-corner .octo-arm {
+  .ByteTrade-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out
   }
 }
