@@ -1,5 +1,5 @@
 <template>
-  <a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" class="github-corner" aria-label="View source on Github">
+  <a href="https://www.bytetrade.io/trade.html" target="_blank" class="Bytetrade-corner" aria-label="View source on Bytetrade">
     <svg
       width="80"
       height="80"
@@ -24,7 +24,7 @@
 </template>
 
 <style scoped>
-.github-corner:hover .octo-arm {
+.Bytetrade-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out
 }
 
@@ -44,10 +44,10 @@
 }
 
 @media (max-width:500px) {
-  .github-corner:hover .octo-arm {
+  .Bytetrade-corner:hover .octo-arm {
     animation: none
   }
-  .github-corner .octo-arm {
+  .Bytetrade-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out
   }
 }

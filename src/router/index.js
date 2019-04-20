@@ -7,10 +7,10 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+// import componentsRouter from './modules/components'
+// import chartsRouter from './modules/charts'
+// import tableRouter from './modules/table'
+// import nestedRouter from './modules/nested'
 
 /** note: sub-menu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -82,7 +82,7 @@ export const constantRoutes = [
         meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
       }
     ]
-  }
+  // },
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -107,7 +107,7 @@ export const constantRoutes = [
   //       meta: { title: 'guide', icon: 'guide', noCache: true }
   //     }
   //   ]
-  // }
+  }
 ]
 
 /**
@@ -115,6 +115,27 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
 */
 export const asyncRoutes = [
+  {
+    path: '/tradingVol',
+    component: Layout,
+    // redirect: '/balance/show',
+    alwaysShow: true,
+    meta: { title: '交易量统计', icon: 'chart' },
+    children: [
+      {
+        path: 'allmarket',
+        component: () => import('@/views/tradingVolume/allmarket'),
+        // name: 'hello',
+        meta: { title: '所有市场' }
+      },
+      {
+        path: 'singlemarket',
+        component: () => import('@/views/tradingVolume/singlemarket'),
+        // name: 'hello',
+        meta: { title: '自定义市场' }
+      }
+    ]
+  },
   {
     path: '/balance',
     component: Layout,
@@ -225,10 +246,10 @@ export const asyncRoutes = [
   },
 
   /** when your routing map is too long, you can split it into small modules **/
-  componentsRouter,
-  chartsRouter,
-  nestedRouter,
-  tableRouter,
+  // componentsRouter,
+  // chartsRouter,
+  // nestedRouter,
+  // tableRouter,
 
   // {
   //   path: '/example',
