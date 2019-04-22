@@ -5,7 +5,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import balance from '@/api/balance.js'
+import tradingVolume from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
@@ -46,7 +46,7 @@ export default {
     getdata() {
       const self = this
       const params = {}
-      balance.getBalanceData(params).then(res => {
+      tradingVolume.getAllTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
@@ -57,12 +57,13 @@ export default {
       }
     },
     drawChart(data) {
+      console.log(data)
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: 'Requests',
+          text: '总交易量统计',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
@@ -84,7 +85,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['CMCC', 'CTCC', 'CUCC'],
+          data: ['总交易量', '真实用户', '机器人兄弟'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -106,11 +107,11 @@ export default {
               color: '#57617B'
             }
           },
-          data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
+          data: data.time
         }],
         yAxis: [{
           type: 'value',
-          name: '(%)',
+          name: '交易量（ETH）',
           axisTick: {
             show: false
           },
@@ -132,7 +133,7 @@ export default {
           }
         }],
         series: [{
-          name: 'CMCC',
+          name: '总交易量',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -164,9 +165,9 @@ export default {
 
             }
           },
-          data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
+          data: data.deal_base_eth
         }, {
-          name: 'CTCC',
+          name: '真实用户',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -198,9 +199,9 @@ export default {
 
             }
           },
-          data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
+          data: data.deal_base_eth
         }, {
-          name: 'CUCC',
+          name: '机器人兄弟',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -231,7 +232,7 @@ export default {
               borderWidth: 12
             }
           },
-          data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
+          data: data.deal_base_eth
         }]
       })
     }
