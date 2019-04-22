@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Chart from '@/components/Charts/allSymbolInfo'
+import Chart from '@/components/Charts/balance/allSymbolInfo'
 
 export default {
   name: 'MixChart',

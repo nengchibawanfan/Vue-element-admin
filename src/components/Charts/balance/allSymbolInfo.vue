@@ -7,7 +7,7 @@
 
 <script>
 import echarts from 'echarts'
-import resize from './mixins/resize'
+import resize from '@/components/Charts/mixins/resize'
 import balance from '@/api/balance.js'
 
 export default {

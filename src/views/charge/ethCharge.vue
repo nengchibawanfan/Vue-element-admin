@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Chart from '@/components/Charts/ethCharge'
+import Chart from '@/components/Charts/charge/ethCharge'
 
 export default {
   name: 'MixChart',

@@ -1,10 +1,13 @@
 <template>
+  <!--   <div class="app-container">
+        <el-input v-model="filename" :placeholder="$t('zip.placeholder')" style="width:300px;" prefix-icon="el-icon-document" />
+  </div> -->
   <div :id="id" :class="className" :style="{height:height,width:width}" />
 </template>
 
 <script>
 import echarts from 'echarts'
-import resize from './mixins/resize'
+import resize from '@/components/Charts/mixins/resize'
 import balance from '@/api/balance.js'
 
 export default {
@@ -20,11 +23,11 @@ export default {
     },
     width: {
       type: String,
-      default: '800px'
+      default: '200px'
     },
     height: {
       type: String,
-      default: '800px'
+      default: '200px'
     }
   },
   data() {
@@ -45,8 +48,10 @@ export default {
   methods: {
     getdata() {
       const self = this
-      const params = {}
-      balance.getBalanceData(params).then(res => {
+      const params = {
+        // 'exchange': 'bytetrade'
+      }
+      balance.getTotalETH(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
@@ -57,12 +62,13 @@ export default {
       }
     },
     drawChart(data) {
+      console.log(data)
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: 'Requests',
+          text: '所有资产换算为ETH',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
@@ -84,7 +90,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['CMCC', 'CTCC', 'CUCC'],
+          data: ['ETH'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -106,11 +112,11 @@ export default {
               color: '#57617B'
             }
           },
-          data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
+          data: data.time
         }],
         yAxis: [{
           type: 'value',
-          name: '(%)',
+          name: 'ETH总量',
           axisTick: {
             show: false
           },
@@ -132,7 +138,7 @@ export default {
           }
         }],
         series: [{
-          name: 'CMCC',
+          name: 'ETH',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -164,74 +170,7 @@ export default {
 
             }
           },
-          data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
-        }, {
-          name: 'CTCC',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(0, 136, 212, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(0, 136, 212, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(0,136,212)',
-              borderColor: 'rgba(0,136,212,0.2)',
-              borderWidth: 12
-
-            }
-          },
-          data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
-        }, {
-          name: 'CUCC',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(219, 50, 51, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(219, 50, 51, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(219,50,51)',
-              borderColor: 'rgba(219,50,51,0.2)',
-              borderWidth: 12
-            }
-          },
-          data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
+          data: data.amount
         }]
       })
     }
