@@ -10,8 +10,8 @@ import axios from 'axios'
 
 function getBalanceData(params) {
 // body...
-  // return axios.get('http://18.179.204.45:5001/single_coin_total_balance_data', { params: params })
-  return axios.get('http://127.0.0.1:5001/single_coin_total_balance_data', { params: params })
+  return axios.get('http://18.179.204.45:5001/single_coin_total_balance_data', { params: params })
+  // return axios.get('http://127.0.0.1:5001/single_coin_total_balance_data', { params: params })
 }
 
 function getAllSymbolBalance(params) {
