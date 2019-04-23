@@ -12,6 +12,22 @@
           <option>binance</option>
           <option>okex</option>
         </select>
+        <el-date-picker
+          v-model="start_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="开始时间"
+          class="date-input"
+        />
+        <el-date-picker
+          v-model="end_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="结束时间"
+          class="date-input"
+        />
         <!--
         <el-input v-model="startDate" placeholder="开始时间" class="date-input" />
         <el-input v-model="endDate" placeholder="结束时间" class="date-input" />
@@ -54,9 +70,10 @@ export default {
     return {
       chart: null,
       hh: '650px',
-      ww: '800px',
       symbolName: '',
-      exchangeName: ''
+      exchangeName: '',
+      start_time: '',
+      end_time: ''
     }
   },
   mounted() {
@@ -74,7 +91,9 @@ export default {
       const self = this
       const params = {
         'exchange': self.exchangeName || 'bytetrade',
-        'coinid': self.symbolName || 2
+        'coinid': self.symbolName || 2,
+        'start_time': self.start_time || '',
+        'end_time': self.end_time || ''
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)

@@ -1,8 +1,30 @@
 <template>
-  <!--   <div class="app-container">
-        <el-input v-model="filename" :placeholder="$t('zip.placeholder')" style="width:300px;" prefix-icon="el-icon-document" />
-  </div> -->
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <!-- <div :id="id" :class="className" :style="{height:height,width:width}" /> -->
+  <div>
+    <div class="inputDiv">
+      <form>
+        <el-date-picker
+          v-model="start_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="开始时间"
+          class="date-input"
+        />
+        <el-date-picker
+          v-model="end_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="结束时间"
+          class="date-input"
+        />
+
+        <input type="button" value="提交" @click="getdata">
+      </form>
+    </div>
+    <div :id="id" :class="className" :style="{height:hh,width:width}" />
+  </div>
 </template>
 
 <script>
@@ -32,7 +54,10 @@ export default {
   },
   data() {
     return {
-      chart: null
+      chart: null,
+      hh: '650px',
+      start_time: '',
+      end_time: ''
     }
   },
   mounted() {
@@ -49,7 +74,8 @@ export default {
     getdata() {
       const self = this
       const params = {
-        // 'exchange': 'bytetrade'
+        'start_time': self.start_time || '',
+        'end_time': self.end_time || ''
       }
       balance.getTotalETH(params).then(res => {
         self.handleRequest(res, self.drawChart)
@@ -177,3 +203,11 @@ export default {
   }
 }
 </script>
+
+<style type="text/css">
+  .date-input {
+    padding: 10px;
+    width: 300px;
+  }
+
+</style>
