@@ -15,7 +15,7 @@ function getAllTradingVolume(params) {
 }
 
 function getSingleMarketTradingVolume(params) {
-  return axios.get('http://18.179.204.45:5001/all_symbol_balance', { params: params })
+  return axios.get('http://18.179.204.45:5001/get_trading_volume_single_market', { params: params })
   // return axios.get('http://127.0.0.1:5001/get_trading_volume_single_market', { params: params })
 }
 
