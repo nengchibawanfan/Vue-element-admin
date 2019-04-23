@@ -2,7 +2,7 @@
   <div>
     <div class="inputDiv">
       <form>
-        <el-input v-model="symbolName" placeholder="请输入CoinId" class="symbol-input" />
+        <el-input v-model="symbolName" placeholder="请输入CoinId：2" class="symbol-input" />
 
         <select v-model="exchangeName" class="exchange-select">
           <option disabled value="">请选择交易所</option>
@@ -73,8 +73,8 @@ export default {
     getdata() {
       const self = this
       const params = {
-        'exchange': self.exchangeName || 'ByteTrade',
-        'coinid': self.symbolName || ''
+        'exchange': self.exchangeName || 'bytetrade',
+        'coinid': self.symbolName || 2
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)

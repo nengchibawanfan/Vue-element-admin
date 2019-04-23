@@ -2,16 +2,7 @@
   <div>
     <div class="inputDiv">
       <form>
-        <el-input v-model="symbolName" placeholder="请输入CoinId" class="symbol-input" />
-
-        <select v-model="exchangeName" class="exchange-select">
-          <option disabled value="">请选择交易所</option>
-          <option>bytetrade</option>
-          <option>bytetrade_witness</option>
-          <option>huobipro_xiaocong</option>
-          <option>binance</option>
-          <option>okex</option>
-        </select>
+        <el-input v-model="marketName" placeholder="MT/ETH" class="symbol-input" />
         <!--
         <el-input v-model="startDate" placeholder="开始时间" class="date-input" />
         <el-input v-model="endDate" placeholder="结束时间" class="date-input" />
@@ -28,7 +19,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import balance from '@/api/balance.js'
+import tradingVolume from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
@@ -55,8 +46,7 @@ export default {
       chart: null,
       hh: '650px',
       ww: '800px',
-      symbolName: '',
-      exchangeName: ''
+      marketName: ''
     }
   },
   mounted() {
@@ -73,10 +63,9 @@ export default {
     getdata() {
       const self = this
       const params = {
-        'exchange': self.exchangeName || 'ByteTrade',
-        'coinid': self.symbolName || ''
+        'market': self.marketName || 'MT/ETH'
       }
-      balance.getBalanceData(params).then(res => {
+      tradingVolume.getSingleMarketTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
@@ -87,12 +76,16 @@ export default {
       }
     },
     drawChart(data) {
+      // console.log(data.all["all_deal"])
+      // console.log(data.robot["alldeal"])
+      // console.log(data.realuser["alldeal"])
+
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: 'Requests',
+          text: '单个市场的交易量',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
@@ -114,7 +107,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['CMCC', 'CTCC', 'CUCC'],
+          data: ['all', 'robot', 'realuser'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -136,11 +129,11 @@ export default {
               color: '#57617B'
             }
           },
-          data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
+          data: data.time
         }],
         yAxis: [{
           type: 'value',
-          name: '(%)',
+          name: 'Volume(ETH)',
           axisTick: {
             show: false
           },
@@ -162,7 +155,7 @@ export default {
           }
         }],
         series: [{
-          name: 'CMCC',
+          name: 'all',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -194,9 +187,9 @@ export default {
 
             }
           },
-          data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
+          data: data.all['all_deal']
         }, {
-          name: 'CTCC',
+          name: 'robot',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -228,9 +221,9 @@ export default {
 
             }
           },
-          data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
+          data: data.robot['all_deal']
         }, {
-          name: 'CUCC',
+          name: 'realuser',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -261,7 +254,7 @@ export default {
               borderWidth: 12
             }
           },
-          data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
+          data: data.realuser['all_deal']
         }]
       })
     }
