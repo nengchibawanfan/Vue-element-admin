@@ -3,10 +3,20 @@
     <div class="inputDiv">
       <form>
         <el-input v-model="marketName" placeholder="MT/ETH" class="symbol-input" />
-        <!--
-        <el-input v-model="startDate" placeholder="开始时间" class="date-input" />
-        <el-input v-model="endDate" placeholder="结束时间" class="date-input" />
- -->
+        <el-date-picker
+          v-model="start_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="开始时间"
+        />
+        <el-date-picker
+          v-model="end_time"
+          type="datetime"
+          format="yyyy-MM-ddThh:mm:ssZ"
+          value-format="yyyy-MM-ddThh:mm:ssZ"
+          placeholder="结束时间"
+        />
 
         <input type="button" value="提交" @click="getdata">
       </form>
@@ -46,7 +56,9 @@ export default {
       chart: null,
       hh: '650px',
       ww: '800px',
-      marketName: ''
+      marketName: '',
+      start_time: '',
+      end_time: ''
     }
   },
   mounted() {
@@ -63,7 +75,9 @@ export default {
     getdata() {
       const self = this
       const params = {
-        'market': self.marketName || 'MT/ETH'
+        'market': self.marketName || 'MT/ETH',
+        'start_time': self.start_time || '',
+        'end_time': self.end_time || ''
       }
       tradingVolume.getSingleMarketTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
@@ -85,7 +99,7 @@ export default {
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: '单个市场的交易量',
+          text: self.market,
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
