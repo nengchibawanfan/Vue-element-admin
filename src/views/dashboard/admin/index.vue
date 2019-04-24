@@ -48,6 +48,7 @@ import LineChart from './components/LineChart'
 // import PieChart from './components/PieChart'
 // import BarChart from './components/BarChart'
 // import TransactionTable from './components/TransactionTable'
+// import UserOrder from './components/UserOrder'
 // import TodoList from './components/TodoList'
 // import BoxCard from './components/BoxCard'
 
@@ -80,6 +81,7 @@ export default {
     // PieChart,
     // BarChart,
     // TransactionTable,
+    // UserOrder
     // TodoList,
     // BoxCard
   },
