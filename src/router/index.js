@@ -270,7 +270,7 @@ export const asyncRoutes = [
   // componentsRouter,
   // chartsRouter,
   // nestedRouter,
-  tableRouter,
+  tableRouter
 
   // {
   //   path: '/example',
@@ -428,19 +428,19 @@ export const asyncRoutes = [
   //   hidden: true
   // },
 
-  {
-    path: '/theme',
-    component: Layout,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/theme/index'),
-        name: 'Theme',
-        meta: { title: 'theme', icon: 'theme' }
-      }
-    ]
-  }
+  // {
+  //   path: '/theme',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/theme/index'),
+  //       name: 'Theme',
+  //       meta: { title: 'theme', icon: 'theme' }
+  //     }
+  //   ]
+  // }
 
   // {
   //   path: '/clipboard',
