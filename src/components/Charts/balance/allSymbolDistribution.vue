@@ -85,8 +85,19 @@ export default {
               color: '#fff'
             }
           },
-          formatter: '{a} <br/>{b} : {c} ({d}%)<br/>'
+          // formatter: '{a0} <br/>{b} : {c} ({d}%)<br/> 总数量 : '
+          formatter: function(params) {
+            var name = params.name
+            var percent = params.percent
+            var value = params.value
+            var res
+
+            res = '折算为ETH <br/>' + name + ':' + value + '(' + percent + '%)<br/> 总数量 : ' + data.data_amount[name]
+
+            return res
+          }
         },
+
         grid: {
           left: '5%',
           right: '5%',
@@ -104,7 +115,6 @@ export default {
           textStyle: {
             color: '#90979c'
           },
-          // data: ['free', 'male', 'average']
           data: data.coinname
         },
         toolbox: {
@@ -131,12 +141,22 @@ export default {
         calculable: true,
         series: [
           {
-            name: '资产信息',
+            name: '折合为ETH',
             type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
-            data: data.data
+            // radius: '55%',
+            // center: ['25%', '60%'],
+            // data: [data.data1, data.data2],
+            data: data.data_asETH
           }
+          // {
+          //   name: '实际个数',
+          //   type: 'pie',
+          //   radius: '55%',
+          //   center: ['75%', '60%'],
+          //   // data: [data.data1, data.data2],
+          //   data: data.data2,
+          // },
+
         ]
       })
     }

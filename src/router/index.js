@@ -9,7 +9,7 @@ import Layout from '@/layout'
 /* Router Modules */
 // import componentsRouter from './modules/components'
 // import chartsRouter from './modules/charts'
-// import tableRouter from './modules/table'
+import tableRouter from './modules/table'
 // import nestedRouter from './modules/nested'
 
 /** note: sub-menu only appear when children.length>=1
@@ -141,7 +141,7 @@ export const asyncRoutes = [
     component: Layout,
     // redirect: '/balance/show',
     alwaysShow: true,
-    meta: { title: '机器人资产统计', icon: 'chart' },
+    meta: { title: '机器人资产统计', icon: 'peoples' },
     children: [
       {
         path: 'singleSymbol',
@@ -153,14 +153,14 @@ export const asyncRoutes = [
         path: 'allSymbolDistribution',
         component: () => import('@/views/balance/allSymbolDistribution'),
         name: 'hello',
-        meta: { title: '所有资产分布' }
-      },
-      {
-        path: 'allSymbolInfo',
-        component: () => import('@/views/balance/allSymbolInfo'),
-        name: 'hello',
         meta: { title: '所有资产信息' }
       },
+      // {
+      //   path: 'allSymbolInfo',
+      //   component: () => import('@/views/balance/allSymbolInfo'),
+      //   name: 'hello',
+      //   meta: { title: '所有资产信息' }
+      // },
       {
         path: 'totalETH',
         component: () => import('@/views/balance/totalETH'),
@@ -175,6 +175,27 @@ export const asyncRoutes = [
     // redirect: '/balance/show',
     alwaysShow: true,
     meta: { title: '手续费消耗统计', icon: 'chart' },
+    children: [
+      {
+        path: 'btt_info',
+        component: () => import('@/views/charge/bttCharge'),
+        name: 'hello',
+        meta: { title: 'btt情况' }
+      },
+      {
+        path: 'ETH_charge',
+        component: () => import('@/views/charge/ethCharge'),
+        name: 'hello',
+        meta: { title: '所有手续费的消耗(ETH)' }
+      }
+    ]
+  },
+  {
+    path: '/profit',
+    component: Layout,
+    // redirect: '/balance/show',
+    alwaysShow: true,
+    meta: { title: '做市盈亏', icon: 'money' },
     children: [
       {
         path: 'btt_info',
@@ -249,7 +270,7 @@ export const asyncRoutes = [
   // componentsRouter,
   // chartsRouter,
   // nestedRouter,
-  // tableRouter,
+  tableRouter,
 
   // {
   //   path: '/example',
