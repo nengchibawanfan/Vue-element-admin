@@ -147,7 +147,8 @@ export default {
         }],
         yAxis: [{
           type: 'value',
-          name: 'Volume(ETH)',
+          name: 'Volume(' + data.base + ')',
+          // name: marketName,
           axisTick: {
             show: false
           },
