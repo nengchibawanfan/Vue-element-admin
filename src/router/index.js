@@ -115,6 +115,19 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
 */
 export const asyncRoutes = [
+
+  {
+    path: '/statistics',
+    component: Layout,
+    children: [
+      {
+        path: 'statistics',
+        component: () => import('@/views/statistics/statistics'),
+        // name: 'hello',
+        meta: { title: '做市总览', icon: 'icon' }
+      }
+    ]
+  },
   {
     path: '/tradingVol',
     component: Layout,
