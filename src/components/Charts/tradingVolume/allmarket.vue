@@ -196,8 +196,43 @@ export default {
 
             }
           },
-          data: data.deal_base_eth
-        }, {
+          data: data.all['deal_base_eth']
+        },
+        {
+          name: '机器人兄弟',
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 5,
+          showSymbol: false,
+          lineStyle: {
+            normal: {
+              width: 1
+            }
+          },
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: 'rgba(219, 50, 51, 0.3)'
+              }, {
+                offset: 0.8,
+                color: 'rgba(219, 50, 51, 0)'
+              }], false),
+              shadowColor: 'rgba(0, 0, 0, 0.1)',
+              shadowBlur: 10
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: 'rgb(219,50,51)',
+              borderColor: 'rgba(219,50,51,0.2)',
+              borderWidth: 12
+            }
+          },
+          data: data.robot['deal_base_eth']
+        },
+        {
           name: '真实用户',
           type: 'line',
           smooth: true,
@@ -230,40 +265,7 @@ export default {
 
             }
           },
-          data: data.deal_base_eth
-        }, {
-          name: '机器人兄弟',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(219, 50, 51, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(219, 50, 51, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(219,50,51)',
-              borderColor: 'rgba(219,50,51,0.2)',
-              borderWidth: 12
-            }
-          },
-          data: data.deal_base_eth
+          data: data.realuser['deal_base_eth']
         }]
       })
     }
