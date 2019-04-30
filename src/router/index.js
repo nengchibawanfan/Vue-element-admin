@@ -121,13 +121,25 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'statistics',
+        path: '/statistics',
+
         component: () => import('@/views/statistics/statistics'),
-        // name: 'hello',
         meta: { title: '做市总览', icon: 'icon' }
       }
     ]
   },
+  {
+    path: '/amount_info',
+    component: Layout,
+    children: [
+      {
+        path: '/amount_info/coinname/:coinname',
+        component: () => import('@/views/statistics/amountInfo'),
+        meta: { title: '数量信息', icon: 'form' }
+      }
+    ]
+  },
+
   {
     path: '/tradingVol',
     component: Layout,
@@ -138,13 +150,12 @@ export const asyncRoutes = [
       {
         path: 'allmarket',
         component: () => import('@/views/tradingVolume/allmarket'),
-        // name: 'hello',
         meta: { title: '所有市场' }
       },
       {
         path: 'singlemarket',
+
         component: () => import('@/views/tradingVolume/singlemarket'),
-        // name: 'hello',
         meta: { title: '自定义市场' }
       }
     ]
@@ -157,27 +168,26 @@ export const asyncRoutes = [
     meta: { title: '机器人资产统计', icon: 'peoples' },
     children: [
       {
+        // path: 'singleSymbol/exchange/:exchange/coinid/:coinid',
         path: 'singleSymbol',
+
         component: () => import('@/views/balance/singleSymbol'),
-        name: 'hello',
         meta: { title: '单个资产情况' }
       },
       {
         path: 'allSymbolDistribution',
         component: () => import('@/views/balance/allSymbolDistribution'),
-        name: 'hello',
         meta: { title: '所有资产信息' }
       },
       // {
       //   path: 'allSymbolInfo',
       //   component: () => import('@/views/balance/allSymbolInfo'),
-      //   name: 'hello',
+      // name: 'hello',
       //   meta: { title: '所有资产信息' }
       // },
       {
         path: 'totalETH',
         component: () => import('@/views/balance/totalETH'),
-        name: 'hello',
         meta: { title: '做市总ETH数量' }
       }
     ]
@@ -192,13 +202,11 @@ export const asyncRoutes = [
       {
         path: 'btt_info',
         component: () => import('@/views/charge/bttCharge'),
-        name: 'hello',
         meta: { title: 'btt情况' }
       },
       {
         path: 'ETH_charge',
         component: () => import('@/views/charge/ethCharge'),
-        name: 'hello',
         meta: { title: '所有手续费的消耗(ETH)' }
       }
     ]
@@ -212,14 +220,14 @@ export const asyncRoutes = [
     children: [
       {
         path: 'btt_info',
+
         component: () => import('@/views/charge/bttCharge'),
-        name: 'hello',
         meta: { title: 'btt情况' }
       },
       {
         path: 'ETH_charge',
+
         component: () => import('@/views/charge/ethCharge'),
-        name: 'hello',
         meta: { title: '所有手续费的消耗(ETH)' }
       }
     ]

@@ -28,11 +28,6 @@
           placeholder="结束时间"
           class="date-input"
         />
-        <!--
-        <el-input v-model="startDate" placeholder="开始时间" class="date-input" />
-        <el-input v-model="endDate" placeholder="结束时间" class="date-input" />
- -->
-
         <input type="button" value="提交" @click="getdata">
       </form>
     </div>
@@ -90,10 +85,18 @@ export default {
     getdata() {
       const self = this
       const params = {
+        // 直接访问页面
         'exchange': self.exchangeName || 'bytetrade',
-        'coinid': self.symbolName || 2,
-        'start_time': self.start_time || '',
-        'end_time': self.end_time || ''
+        'coinid': self.symbolName || 2
+
+        // 'exchange': this.$route.query.exchange || 'bytetrade',
+        // 'coinid': this.$route.query.coinid || 2,
+
+        // 'exchange': this.$route.params.exchange || 'bytetrade',
+        // 'coinid': this.$route.params.coinid || 2,
+
+        // 'start_time': self.start_time || '',
+        // 'end_time': self.end_time || ''
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)
@@ -228,91 +231,92 @@ export default {
           start: 1,
           end: 35
         }],
-        series: [{
-          name: 'free',
-          type: 'bar',
-          stack: 'total',
-          barMaxWidth: 35,
-          barGap: '10%',
-          itemStyle: {
-            normal: {
-              color: 'rgba(255,144,128,1)',
-              label: {
-                show: false,
-                textStyle: {
-                  color: '#fff'
-                },
-                position: 'insideTop',
-                formatter(p) {
-                  return p.value > 0 ? p.value : ''
-                }
-              }
-            }
-          },
-          data: data.free
-        },
+        series: [
+        // {
+        //   name: 'free',
+        //   type: 'bar',
+        //   stack: 'total',
+        //   barMaxWidth: 35,
+        //   barGap: '10%',
+        //   itemStyle: {
+        //     normal: {
+        //       color: 'rgba(255,144,128,1)',
+        //       label: {
+        //         show: false,
+        //         textStyle: {
+        //           color: '#fff'
+        //         },
+        //         position: 'insideTop',
+        //         formatter(p) {
+        //           return p.value > 0 ? p.value : ''
+        //         }
+        //       }
+        //     }
+        //   },
+        //   data: data.free
+        // },
 
-        {
-          name: 'used',
-          type: 'bar',
-          stack: 'total',
-          itemStyle: {
-            normal: {
-              color: 'rgba(0,191,183,1)',
-              barBorderRadius: 0,
-              label: {
-                show: false,
-                position: 'top',
-                formatter(p) {
-                  return p.value > 0 ? p.value : ''
+          // {
+          //   name: 'used',
+          //   type: 'bar',
+          //   stack: 'total',
+          //   itemStyle: {
+          //     normal: {
+          //       color: 'rgba(0,191,183,1)',
+          //       barBorderRadius: 0,
+          //       label: {
+          //         show: false,
+          //         position: 'top',
+          //         formatter(p) {
+          //           return p.value > 0 ? p.value : ''
+          //         }
+          //       }
+          //     }
+          //   },
+          //   data: data.used
+          // },
+          {
+            name: 'total',
+            type: 'line',
+            stack: 'total',
+            symbolSize: 10,
+            symbol: 'circle',
+            itemStyle: {
+              normal: {
+                color: 'rgba(252,230,48,1)',
+                barBorderRadius: 0,
+                label: {
+                  show: false,
+                  position: 'top',
+                  formatter(p) {
+                    return p.value > 0 ? p.value : ''
+                  }
                 }
               }
-            }
+            },
+            data: data.total
           },
-          data: data.used
-        },
-        {
-          name: 'total',
-          type: 'line',
-          stack: 'total',
-          symbolSize: 10,
-          symbol: 'circle',
-          itemStyle: {
-            normal: {
-              color: 'rgba(252,230,48,1)',
-              barBorderRadius: 0,
-              label: {
-                show: false,
-                position: 'top',
-                formatter(p) {
-                  return p.value > 0 ? p.value : ''
+          {
+            name: 'asETH',
+            type: 'line',
+            stack: 'total',
+            symbolSize: 10,
+            symbol: 'circle',
+            itemStyle: {
+              normal: {
+                color: 'rgba(252,20,48,1)',
+                barBorderRadius: 0,
+                label: {
+                  show: false,
+                  position: 'top',
+                  formatter(p) {
+                    return p.value > 0 ? p.value : ''
+                  }
                 }
               }
-            }
-          },
-          data: data.total
-        },
-        {
-          name: 'asETH',
-          type: 'line',
-          stack: 'total',
-          symbolSize: 10,
-          symbol: 'circle',
-          itemStyle: {
-            normal: {
-              color: 'rgba(252,230,48,1)',
-              barBorderRadius: 0,
-              label: {
-                show: false,
-                position: 'top',
-                formatter(p) {
-                  return p.value > 0 ? p.value : ''
-                }
-              }
-            }
-          },
-          data: data.value
-        }
+            },
+            data: data.value
+          }
         ]
       })
     }

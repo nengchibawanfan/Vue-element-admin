@@ -8,47 +8,55 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column :label="$t('CoinName')" prop="coin_id" align="center" width="80">
+      <el-table-column :label="$t('CoinName')" prop="coin_name" align="center" width="150px">
         <template slot-scope="scope">
-          <span>{{ scope.row.coin_id }}</span>
+          <span>{{ scope.row.coin_name }}</span>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('数量')" width="150px" align="center">
+      <el-table-column :label="$t('数量')" width="200px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.coin_id }}</span>
+          <span>{{ scope.row.end_num }}</span>
         </template>      </el-table-column>
-      <el-table-column :label="$t('数量变化')" min-width="150px">
+      <el-table-column :label="$t('数量变化')" width="140px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.title }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('价格')" width="110px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <el-tag :type="row.price_status">
+            <router-link :to="{ path: '/amount_info/coinname/' + row.coin_name }">
+              <span class="link-type">{{ row.diff_amount_ratio }}</span>
+            </router-link>
+          </el-tag>
+
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('价格变化')" width="110px" align="center">
+      <el-table-column :label="$t('价格')" width="140px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          <span>{{ scope.row.end_price }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('净值（ETH）')" width="110px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column :label="$t('净值（USDT）')" width="110px" align="center">
-        <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column :label="$t('盈亏')" class-name="status-col" width="100">
+      <el-table-column :label="$t('价格变化')" class-name="status-col" width="140px" align="center">
         <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
+          <el-tag :type="row.price_status">
+            {{ row.price_change_ratio }}
+          </el-tag>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('净值（ETH）')" width="140px" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.end_value }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('净值（USDT）')" width="140px" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.end_value }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('盈亏')" class-name="status-col" width="140px">
+        <template slot-scope="{row}">
+          <el-tag :type="row.value_status">
+            {{ row.value_change_ratio }}
           </el-tag>
         </template>
       </el-table-column>
@@ -66,16 +74,6 @@ import waves from '@/directive/waves' // Waves directive
 export default {
   name: 'ComplexTable',
   directives: { waves },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       tableData: null,
