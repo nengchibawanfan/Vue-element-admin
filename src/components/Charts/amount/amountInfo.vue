@@ -115,7 +115,7 @@ export default {
             color: '#90979c'
           },
           // data: ['free', 'male', 'average']
-          data: ['内部外部总数量', '内部外部总数量变化', '与dice互转导致数量变化', 'ByteTrade内部交易所数量变化', '外部交易所交易数量变化']
+          data: ['（内部、外部）总数量', '（内部、外部）总数量变化', '与做市系统外部的转账', 'ByteTrade内部交易产生的数量变化', '外部交易所交易数量变化']
 
         },
         calculable: true,
@@ -133,7 +133,7 @@ export default {
         ],
         series: [
           {
-            name: '内部外部总数量',
+            name: '（内部、外部）总数量',
 
             type: 'line',
             label: {
@@ -144,7 +144,7 @@ export default {
             data: data.end_amount
           },
           {
-            name: '内部外部总数量变化',
+            name: '（内部、外部）总数量变化',
             type: 'bar',
             stack: '总量',
             label: {
@@ -155,7 +155,7 @@ export default {
             data: data.all_amount_change
           },
           {
-            name: '与dice互转导致数量变化',
+            name: '与做市系统外部的转账',
             type: 'bar',
             stack: '总量',
             label: {
@@ -166,7 +166,7 @@ export default {
             data: data.bytetrade_transfer
           },
           {
-            name: 'ByteTrade内部交易所数量变化',
+            name: 'ByteTrade内部交易产生的数量变化',
             type: 'bar',
             stack: '总量',
             label: {
@@ -174,7 +174,7 @@ export default {
                 // show: true
               }
             },
-            data: data.bytetrade_change_amount
+            data: data.sum_change
           },
           {
             name: '外部交易所交易数量变化',
