@@ -2,7 +2,7 @@
   <div>
     <div class="inputDiv">
       <form>
-        <el-input v-model="symbolName" placeholder="请输入CoinId：2" class="symbol-input" />
+        <el-input v-model="symbolName" placeholder="请输入CoinName：MT" class="symbol-input" />
 
         <select v-model="exchangeName" class="exchange-select">
           <option disabled value="">请选择交易所</option>
@@ -87,7 +87,7 @@ export default {
       const params = {
         // 直接访问页面
         'exchange': self.exchangeName || 'bytetrade',
-        'coinid': self.symbolName || 2
+        'coin_name': self.symbolName || 'MT'
 
         // 'exchange': this.$route.query.exchange || 'bytetrade',
         // 'coinid': this.$route.query.coinid || 2,
