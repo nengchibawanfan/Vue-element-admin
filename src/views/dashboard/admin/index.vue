@@ -74,8 +74,8 @@ var lineChartData = {
 
   },
   shoppings: {
-    expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130],
+    expectedData: [],
+    actualData: [],
     date: []
 
   }
@@ -124,14 +124,17 @@ export default {
       lineChartData['newVisitis']['actualData'] = data.user_num
       lineChartData['messages']['actualData'] = data.deal_base_eth
       lineChartData['purchases']['actualData'] = data.value
+      lineChartData['shoppings']['actualData'] = data.indicator_value_base_trade
 
       lineChartData['newVisitis']['expectedData'] = data.user_num
       lineChartData['messages']['expectedData'] = data.deal_base_eth
       lineChartData['purchases']['expectedData'] = data.value
+      lineChartData['shoppings']['expectedData'] = data.indicator_value_base_value
 
       lineChartData['newVisitis']['date'] = data.time
       lineChartData['messages']['date'] = data.time
       lineChartData['purchases']['date'] = data.time
+      lineChartData['shoppings']['date'] = data.time
     }
   }
 }
