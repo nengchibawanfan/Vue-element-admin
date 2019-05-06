@@ -9,7 +9,7 @@
           <div class="card-panel-text">
             真实用户活跃人数
           </div>
-          <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="realUserNum" :duration="1000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -22,7 +22,7 @@
           <div class="card-panel-text">
             用户交易量
           </div>
-          <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="realUserTradingVolume" :duration="1000" :decimals="6" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -35,7 +35,7 @@
           <div class="card-panel-text">
             交易利润
           </div>
-          <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="TradingProfit" :duration="1000" :decimals="6" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -48,7 +48,7 @@
           <div class="card-panel-text">
             还没想好
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="13600" :duration="1000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -57,14 +57,45 @@
 
 <script>
 import CountTo from 'vue-count-to'
+import indexInfo from '@/api/indexInfo.js'
 
 export default {
+
   components: {
     CountTo
+  },
+  data() {
+    return {
+      realUserNum: 0,
+      realUserTradingVolume: 0,
+      TradingProfit: 0,
+      end_time: 0
+    }
+  },
+  mounted() {
+    this.getdata()
   },
   methods: {
     handleSetLineChartData(type) {
       this.$emit('handleSetLineChartData', type)
+    },
+    getdata() {
+      const self = this
+      const params = {}
+      indexInfo.getIndexInfo(params).then(res => {
+        self.handleRequest(res, self.setData)
+      })
+    },
+    handleRequest(res, func) {
+      typeof res === 'object' ? res : JSON.parse(res)
+      if (res.status === 200) {
+        func(res.data)
+      }
+    },
+    setData(data) {
+      this.realUserNum = data.real_user_num
+      this.realUserTradingVolume = data.deal_base_eth
+      this.TradingProfit = data.profit
     }
   }
 }

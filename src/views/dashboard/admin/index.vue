@@ -6,6 +6,7 @@
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
+
     </el-row>
 
     <el-row :gutter="32">
@@ -44,6 +45,8 @@
 import ByteTradeCorner from '@/components/ByteTradeCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
+import indexInfo from '@/api/indexInfo.js'
+
 // import RaddarChart from './components/RaddarChart'
 // import PieChart from './components/PieChart'
 // import BarChart from './components/BarChart'
@@ -52,22 +55,29 @@ import LineChart from './components/LineChart'
 // import TodoList from './components/TodoList'
 // import BoxCard from './components/BoxCard'
 
-const lineChartData = {
+var lineChartData = {
   newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
+    expectedData: [],
+    actualData: [],
+    date: []
   },
   messages: {
-    expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
+    expectedData: [],
+    actualData: [],
+    date: []
+
   },
   purchases: {
-    expectedData: [80, 100, 121, 104, 105, 90, 100],
-    actualData: [120, 90, 100, 138, 142, 130, 130]
+    expectedData: [],
+    actualData: [],
+    date: []
+
   },
   shoppings: {
     expectedData: [130, 140, 141, 142, 145, 150, 160],
-    actualData: [120, 82, 91, 154, 162, 140, 130]
+    actualData: [120, 82, 91, 154, 162, 140, 130],
+    date: []
+
   }
 }
 
@@ -90,9 +100,38 @@ export default {
       lineChartData: lineChartData.newVisitis
     }
   },
+  mounted() {
+    this.getdata()
+  },
   methods: {
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
+    },
+    getdata() {
+      const self = this
+      const params = {}
+      indexInfo.getDetailIndexInfo(params).then(res => {
+        self.handleRequest(res, self.setData)
+      })
+    },
+    handleRequest(res, func) {
+      typeof res === 'object' ? res : JSON.parse(res)
+      if (res.status === 200) {
+        func(res.data)
+      }
+    },
+    setData(data) {
+      lineChartData['newVisitis']['actualData'] = data.user_num
+      lineChartData['messages']['actualData'] = data.deal_base_eth
+      lineChartData['purchases']['actualData'] = data.value
+
+      lineChartData['newVisitis']['expectedData'] = data.user_num
+      lineChartData['messages']['expectedData'] = data.deal_base_eth
+      lineChartData['purchases']['expectedData'] = data.value
+
+      lineChartData['newVisitis']['date'] = data.time
+      lineChartData['messages']['date'] = data.time
+      lineChartData['purchases']['date'] = data.time
     }
   }
 }
