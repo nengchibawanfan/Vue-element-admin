@@ -48,7 +48,7 @@
           <div class="card-panel-text">
             做市综合指数
           </div>
-          <count-to :start-val="0" :end-val="13600" :duration="1000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="indicator" :duration="1000" :decimals="6" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -69,6 +69,7 @@ export default {
       realUserNum: 0,
       realUserTradingVolume: 0,
       TradingProfit: 0,
+      indicator: 0,
       end_time: 0
     }
   },
@@ -96,6 +97,11 @@ export default {
       this.realUserNum = data.real_user_num
       this.realUserTradingVolume = data.deal_base_eth
       this.TradingProfit = data.profit
+      this.indicator = data.indicator_value_base_value
+      console.log(this.realUserNum)
+      console.log(this.realUserTradingVolume)
+      console.log(this.TradingProfit)
+      console.log(this.indicator)
     }
   }
 }
