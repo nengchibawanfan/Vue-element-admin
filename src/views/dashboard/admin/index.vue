@@ -59,24 +59,28 @@ var lineChartData = {
   newVisitis: {
     expectedData: [],
     actualData: [],
-    date: []
+    date: [],
+    type: 'newVisitis'
   },
   messages: {
     expectedData: [],
     actualData: [],
-    date: []
+    date: [],
+    type: 'messages'
 
   },
   purchases: {
     expectedData: [],
     actualData: [],
-    date: []
+    date: [],
+    type: 'purchases'
 
   },
   shoppings: {
     expectedData: [],
     actualData: [],
-    date: []
+    date: [],
+    type: 'shoppings'
 
   }
 }
