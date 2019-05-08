@@ -129,17 +129,16 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/amount_info',
+    path: '/market_make_assessment',
     component: Layout,
     children: [
       {
-        path: '/amount_info/coinname/:coinname',
-        component: () => import('@/views/statistics/amountInfo'),
-        meta: { title: '数量信息', icon: 'form' }
+        path: '/market_make_assessment',
+        component: () => import('@/views/marketMakeAssessment/marketMakeAssessment'),
+        meta: { title: '做市深度评价指标', icon: 'icon' }
       }
     ]
   },
-
   {
     path: '/tradingVol',
     component: Layout,
@@ -291,7 +290,18 @@ export const asyncRoutes = [
   // componentsRouter,
   // chartsRouter,
   // nestedRouter,
-  tableRouter
+  tableRouter,
+  {
+    path: '/amount_info',
+    component: Layout,
+    children: [
+      {
+        path: '/amount_info/coinname/:coinname',
+        component: () => import('@/views/statistics/amountInfo'),
+        meta: { title: '数量信息', icon: 'form' }
+      }
+    ]
+  }
 
   // {
   //   path: '/example',
