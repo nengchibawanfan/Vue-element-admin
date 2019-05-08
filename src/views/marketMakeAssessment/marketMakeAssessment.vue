@@ -182,7 +182,7 @@ export default {
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: '做市深度评估指标',
+          text: data.market_name,
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
