@@ -78,23 +78,7 @@ export default {
     return {
       tableData: null,
       total: 0,
-      listLoading: true,
-      statusOptions: ['published', 'draft', 'deleted'],
-      showReviewer: false,
-      dialogFormVisible: false,
-      dialogStatus: '',
-      textMap: {
-        update: 'Edit',
-        create: 'Create'
-      },
-      dialogPvVisible: false,
-      pvData: [],
-      rules: {
-        type: [{ required: true, message: 'type is required', trigger: 'change' }],
-        timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-        title: [{ required: true, message: 'title is required', trigger: 'blur' }]
-      },
-      downloadLoading: false
+      listLoading: true
     }
   },
   created() {
@@ -102,11 +86,10 @@ export default {
   },
   methods: {
     getList() {
-      // this.listLoading = true
+      this.listLoading = true
 
-      // fetchList(this.listQuery).then(response => {
       statistics.getStatistics().then(response => {
-        console.log(response)
+        // console.log(response)
 
         this.tableData = response.data.items
 
@@ -117,11 +100,6 @@ export default {
           this.listLoading = false
         }, 1.5)
       })
-    },
-
-    handleUpdate(row) {
-      // 点击标题然后触发动作
-      console.log('click')
     }
 
   }

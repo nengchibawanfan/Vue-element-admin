@@ -82,7 +82,6 @@ export default {
       if (type === 'shoppings') {
         this.chart.setOption({
           xAxis: {
-          // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             data: date,
             boundaryGap: false,
             axisTick: {
@@ -112,7 +111,10 @@ export default {
             data: ['value', 'trade']
           },
           series: [{
-            name: 'value', itemStyle: {
+            name: 'value',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
               normal: {
                 color: '#FF005A',
                 lineStyle: {
@@ -121,8 +123,7 @@ export default {
                 }
               }
             },
-            smooth: true,
-            type: 'line',
+
             data: expectedData,
             animationDuration: 2800,
             animationEasing: 'cubicInOut'
@@ -137,9 +138,6 @@ export default {
                 lineStyle: {
                   color: '#3888fa',
                   width: 2
-                },
-                areaStyle: {
-                  color: '#f3f8ff'
                 }
               }
             },
@@ -151,7 +149,6 @@ export default {
       } else {
         this.chart.setOption({
           xAxis: {
-          // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             data: date,
             boundaryGap: false,
             axisTick: {
@@ -177,30 +174,44 @@ export default {
               show: false
             }
           },
-          legend: {
-            data: ['actual']
-          },
-          series: [
-            {
-              name: 'actual',
-              smooth: true,
-              type: 'line',
-              itemStyle: {
-                normal: {
-                  color: '#3888fa',
-                  lineStyle: {
-                    color: '#3888fa',
-                    width: 2
-                  },
-                  areaStyle: {
-                    color: '#f3f8ff'
-                  }
+          // legend: {
+          //   data: ['value', 'trade']
+          // },
+          series: [{
+            // name: 'value',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
+              normal: {
+                color: '#FF005A',
+                lineStyle: {
+                  color: '#FF005A',
+                  width: 2
                 }
-              },
-              data: actualData,
-              animationDuration: 2800,
-              animationEasing: 'quadraticOut'
-            }]
+              }
+            },
+
+            data: expectedData,
+            animationDuration: 2800,
+            animationEasing: 'cubicInOut'
+          },
+          {
+            // name: 'trade',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
+              normal: {
+                color: '#3888fa',
+                lineStyle: {
+                  color: '#3888fa',
+                  width: 2
+                }
+              }
+            },
+            data: actualData,
+            animationDuration: 2800,
+            animationEasing: 'quadraticOut'
+          }]
         })
       }
     },

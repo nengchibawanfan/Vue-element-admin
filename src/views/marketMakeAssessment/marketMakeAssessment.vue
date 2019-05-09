@@ -20,7 +20,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('点差')" width="250px" align="center">
+      <el-table-column :label="$t('价差')" width="250px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.price_gap }}</span>
         </template>
@@ -46,7 +46,6 @@
 <script>
 
 import echarts from 'echarts'
-
 import marketMakeAssessment from '@/api/marketMakeAssessment.js'
 import resize from '@/components/Charts/mixins/resize'
 
@@ -79,13 +78,7 @@ export default {
       chart: null,
       tableData: null,
       total: 0,
-      listLoading: true,
-      rules: {
-        type: [{ required: true, message: 'type is required', trigger: 'change' }],
-        timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-        title: [{ required: true, message: 'title is required', trigger: 'blur' }]
-      },
-      downloadLoading: false
+      listLoading: true
     }
   },
   created() {
@@ -103,9 +96,8 @@ export default {
     getList() {
       // this.listLoading = true
 
-      // fetchList(this.listQuery).then(response => {
       marketMakeAssessment.getMarketMakeAssessment().then(response => {
-        console.log(response)
+        // console.log(response)
 
         this.tableData = response.data.items
 
@@ -149,7 +141,7 @@ export default {
       return `rgba(${r},${g},${b},${alpha})` // 返回rgba(r,g,b,a)格式颜色
     },
     drawChart(data) {
-      console.log(data)
+      // console.log(data)
       var series = []
       for (var i in data.exchange) {
         var temp = {
@@ -201,9 +193,6 @@ export default {
         legend: {
           top: 20,
           icon: 'rect',
-          itemWidth: 14,
-          itemHeight: 5,
-          itemGap: 13,
           data: data.exchange,
           right: '4%',
           textStyle: {

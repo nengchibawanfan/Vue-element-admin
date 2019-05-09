@@ -98,10 +98,10 @@ export default {
       this.realUserTradingVolume = data.deal_base_eth
       this.TradingProfit = data.profit
       this.indicator = data.indicator_value_base_value
-      console.log(this.realUserNum)
-      console.log(this.realUserTradingVolume)
-      console.log(this.TradingProfit)
-      console.log(this.indicator)
+      // console.log(this.realUserNum)
+      // console.log(this.realUserTradingVolume)
+      // console.log(this.TradingProfit)
+      // console.log(this.indicator)
     }
   }
 }
