@@ -23,6 +23,8 @@
         <input type="button" value="提交" @click="getdata">
       </form>
     </div>
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+
     <div :id="id" :class="className" :style="{height:hh,width:width}" />
   </div>
 </template>
@@ -31,8 +33,12 @@
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
 import balance from '@/api/balance.js'
+import VueElementLoading from 'vue-element-loading'
 
 export default {
+  components: {
+    VueElementLoading
+  },
   mixins: [resize],
   props: {
     className: {
@@ -57,7 +63,9 @@ export default {
       chart: null,
       hh: '650px',
       start_time: '',
-      end_time: ''
+      end_time: '',
+      isActive: true
+
     }
   },
   mounted() {
@@ -73,12 +81,15 @@ export default {
   methods: {
     getdata() {
       const self = this
+      this.isActive = true
+
       const params = {
         'start_time': self.start_time || '',
         'end_time': self.end_time || ''
       }
       balance.getTotalETH(params).then(res => {
         self.handleRequest(res, self.drawChart)
+        this.isActive = false
       })
     },
     handleRequest(res, func) {

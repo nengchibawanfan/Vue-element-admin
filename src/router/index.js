@@ -210,27 +210,27 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/profit',
-    component: Layout,
-    // redirect: '/balance/show',
-    alwaysShow: true,
-    meta: { title: '做市盈亏', icon: 'money' },
-    children: [
-      {
-        path: 'btt_info',
+  // {
+  //   path: '/profit',
+  //   component: Layout,
+  //   // redirect: '/balance/show',
+  //   alwaysShow: true,
+  //   meta: { title: '做市盈亏', icon: 'money' },
+  //   children: [
+  //     {
+  //       path: 'btt_info',
 
-        component: () => import('@/views/charge/bttCharge'),
-        meta: { title: 'btt情况' }
-      },
-      {
-        path: 'ETH_charge',
+  //       component: () => import('@/views/charge/bttCharge'),
+  //       meta: { title: 'btt情况' }
+  //     },
+  //     {
+  //       path: 'ETH_charge',
 
-        component: () => import('@/views/charge/ethCharge'),
-        meta: { title: '所有手续费的消耗(ETH)' }
-      }
-    ]
-  },
+  //       component: () => import('@/views/charge/ethCharge'),
+  //       meta: { title: '所有手续费的消耗(ETH)' }
+  //     }
+  //   ]
+  // },
 
   // {
   //   path: '/permission',

@@ -31,6 +31,8 @@
         <input type="button" value="提交" @click="getdata">
       </form>
     </div>
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+
     <div :id="id" :class="className" :style="{height:hh,width:width}" />
   </div>
 
@@ -40,8 +42,12 @@
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
 import balance from '@/api/balance.js'
+import VueElementLoading from 'vue-element-loading'
 
 export default {
+  components: {
+    VueElementLoading
+  },
   mixins: [resize],
   props: {
     className: {
@@ -68,7 +74,9 @@ export default {
       symbolName: '',
       exchangeName: '',
       start_time: '',
-      end_time: ''
+      end_time: '',
+      isActive: true
+
     }
   },
   mounted() {
@@ -84,6 +92,8 @@ export default {
   methods: {
     getdata() {
       const self = this
+      this.isActive = true
+
       const params = {
         // 直接访问页面
         'exchange': self.exchangeName || 'bytetrade',
@@ -100,6 +110,7 @@ export default {
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)
+        this.isActive = false
       })
     },
     handleRequest(res, func) {
@@ -165,20 +176,20 @@ export default {
             }
 
           },
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          splitArea: {
-            show: false
-          },
-          axisLabel: {
-            interval: 30
-            // rotate: 45
+          // splitLine: {
+          //   show: false
+          // },
+          // axisTick: {
+          //   show: false
+          // },
+          // splitArea: {
+          //   show: false
+          // },
+          // axisLabel: {
+          //   interval: 30
+          //   // rotate: 45
 
-          },
+          // },
           data: data.time
         }],
         yAxis: [{
@@ -204,77 +215,7 @@ export default {
             show: false
           }
         }],
-        dataZoom: [{
-          show: true,
-          height: 30,
-          xAxisIndex: [
-            0
-          ],
-          bottom: 30,
-          start: 10,
-          end: 80,
-          // ???
-          handleIcon: 'path://M306.1,413c0,2.2-1.8,4-4,4h-59.8c-2.2,0-4-1.8-4-4V200.8c0-2.2,1.8-4,4-4h59.8c2.2,0,4,1.8,4,4V413z',
-          handleSize: '110%',
-          handleStyle: {
-            color: '#d3dee5'
-
-          },
-          textStyle: {
-            color: '#fff' },
-          borderColor: '#90979c'
-
-        }, {
-          type: 'inside',
-          show: true,
-          height: 15,
-          start: 1,
-          end: 35
-        }],
         series: [
-        // {
-        //   name: 'free',
-        //   type: 'bar',
-        //   stack: 'total',
-        //   barMaxWidth: 35,
-        //   barGap: '10%',
-        //   itemStyle: {
-        //     normal: {
-        //       color: 'rgba(255,144,128,1)',
-        //       label: {
-        //         show: false,
-        //         textStyle: {
-        //           color: '#fff'
-        //         },
-        //         position: 'insideTop',
-        //         formatter(p) {
-        //           return p.value > 0 ? p.value : ''
-        //         }
-        //       }
-        //     }
-        //   },
-        //   data: data.free
-        // },
-
-          // {
-          //   name: 'used',
-          //   type: 'bar',
-          //   stack: 'total',
-          //   itemStyle: {
-          //     normal: {
-          //       color: 'rgba(0,191,183,1)',
-          //       barBorderRadius: 0,
-          //       label: {
-          //         show: false,
-          //         position: 'top',
-          //         formatter(p) {
-          //           return p.value > 0 ? p.value : ''
-          //         }
-          //       }
-          //     }
-          //   },
-          //   data: data.used
-          // },
           {
             name: 'total',
             type: 'line',

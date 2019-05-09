@@ -1,13 +1,21 @@
 <template>
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <div class="app-container">
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+    <div />
+    <div :id="id" :class="className" :style="{height:hh,width:width}" />
+  </div>
 </template>
 
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
 import charge from '@/api/charge.js'
+import VueElementLoading from 'vue-element-loading'
 
 export default {
+  components: {
+    VueElementLoading
+  },
   mixins: [resize],
   props: {
     className: {
@@ -29,8 +37,9 @@ export default {
   },
   data() {
     return {
-      chart: null
-      // hh: '650px',
+      isActive: true,
+      chart: null,
+      hh: '650px'
       // ww: '800px',
     }
   },
@@ -47,11 +56,14 @@ export default {
   methods: {
     getdata() {
       const self = this
+      this.isActive = true
+
       const params = {
         // 'coinid': self.symbolName || ''
       }
       charge.getBttInfo(params).then(res => {
         self.handleRequest(res, self.drawChart)
+        this.isActive = false
       })
     },
     handleRequest(res, func) {

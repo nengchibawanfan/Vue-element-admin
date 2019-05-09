@@ -1,5 +1,10 @@
 <template>
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <div class="app-container">
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+    <div />
+
+    <div :id="id" :class="className" :style="{height:hh,width:width}" />
+  </div>
 
 </template>
 
@@ -7,8 +12,12 @@
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
 import amountInfo from '@/api/amountInfo.js'
+import VueElementLoading from 'vue-element-loading'
 
 export default {
+  components: {
+    VueElementLoading
+  },
   mixins: [resize],
   props: {
     className: {
@@ -31,7 +40,9 @@ export default {
   data() {
     return {
       chart: null,
-      coin_name: ''
+      coin_name: '',
+      isActive: true,
+      hh: '750px'
     }
   },
   mounted() {
@@ -47,11 +58,14 @@ export default {
   methods: {
     getdata() {
       const self = this
+      this.isActive = true
+
       const params = {
         'coin_name': this.$route.params.coinname || 'ETH'
       }
       amountInfo.getAmountInfo(params).then(res => {
         self.handleRequest(res, self.drawChart)
+        this.isActive = false
       })
     },
     handleRequest(res, func) {
@@ -127,7 +141,15 @@ export default {
         xAxis: [
           {
             type: 'category',
+            name: 'Time', // 坐标轴名称。
+            nameLocation: 'end', // 坐标轴名称显示位置。
             axisTick: { show: false },
+            axisLine: {
+              lineStyle: {
+                color: '#90979c'
+              }
+
+            },
             data: data.end_time
           }
         ],
