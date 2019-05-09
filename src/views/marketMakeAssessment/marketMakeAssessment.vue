@@ -116,7 +116,6 @@ export default {
     },
     getEfficiencyInfo(marketName) {
       const self = this
-      console.log(this.isActive)
       this.isActive = true
       // 打开loading
       var params = {
@@ -126,7 +125,6 @@ export default {
         console.log(res)
         self.handleRequest(res, self.drawChart)
         this.isActive = false
-        console.log(this.isActive)
       })
     },
     handleRequest(res, func) {
