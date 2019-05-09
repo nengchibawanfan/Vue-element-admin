@@ -39,6 +39,8 @@
       </el-table-column>
     </el-table>
 
+    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+
     <div :id="id" :class="className" :style="{height:height,width:width}" />
   </div>
 </template>
@@ -48,11 +50,15 @@
 import echarts from 'echarts'
 import marketMakeAssessment from '@/api/marketMakeAssessment.js'
 import resize from '@/components/Charts/mixins/resize'
+import VueElementLoading from 'vue-element-loading'
 
 import waves from '@/directive/waves' // Waves directive
 
 export default {
   name: 'ComplexTable',
+  components: {
+    VueElementLoading
+  },
   directives: { waves },
   mixins: [resize],
   props: {
@@ -78,7 +84,8 @@ export default {
       chart: null,
       tableData: null,
       total: 0,
-      listLoading: true
+      listLoading: true,
+      isActive: true
     }
   },
   created() {
@@ -94,8 +101,6 @@ export default {
   },
   methods: {
     getList() {
-      // this.listLoading = true
-
       marketMakeAssessment.getMarketMakeAssessment().then(response => {
         // console.log(response)
 
@@ -111,14 +116,17 @@ export default {
     },
     getEfficiencyInfo(marketName) {
       const self = this
-
-      console.log(marketName)
+      console.log(this.isActive)
+      this.isActive = true
+      // 打开loading
       var params = {
         'market_name': marketName || 'MT/ETH'
       }
       marketMakeAssessment.getMarketMakeAssessmentInfo(params).then(res => {
         console.log(res)
         self.handleRequest(res, self.drawChart)
+        this.isActive = false
+        console.log(this.isActive)
       })
     },
     handleRequest(res, func) {
