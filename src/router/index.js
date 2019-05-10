@@ -140,6 +140,17 @@ export const asyncRoutes = [
     ]
   },
   {
+    path: '/realuser_chip_distribution',
+    component: Layout,
+    children: [
+      {
+        path: '/realuser_chip_distribution',
+        component: () => import('@/views/realuserChipDistribution/realuserChipDistribution'),
+        meta: { title: '用户筹码分布', icon: 'icon' }
+      }
+    ]
+  },
+  {
     path: '/tradingVol',
     component: Layout,
     // redirect: '/balance/show',
