@@ -33,9 +33,9 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            交易利润
+            总净值(ETH)
           </div>
-          <count-to :start-val="0" :end-val="TradingProfit" :duration="1000" :decimals="6" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="totaleth" :duration="1000" :decimals="2" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -68,7 +68,7 @@ export default {
     return {
       realUserNum: 0,
       realUserTradingVolume: 0,
-      TradingProfit: 0,
+      totaleth: 0,
       indicator: 0,
       end_time: 0
     }
@@ -96,12 +96,8 @@ export default {
     setData(data) {
       this.realUserNum = data.real_user_num
       this.realUserTradingVolume = data.deal_base_eth
-      this.TradingProfit = data.profit
+      this.totaleth = data.total_eth
       this.indicator = data.indicator_value_base_value
-      // console.log(this.realUserNum)
-      // console.log(this.realUserTradingVolume)
-      // console.log(this.TradingProfit)
-      // console.log(this.indicator)
     }
   }
 }

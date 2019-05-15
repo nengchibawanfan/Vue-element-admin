@@ -1,0 +1,11 @@
+3056:C 14 May 2019 19:30:37.861 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+3056:C 14 May 2019 19:30:37.862 # Redis version=5.0.2, bits=64, commit=00000000, modified=0, pid=3056, just started
+3056:C 14 May 2019 19:30:37.862 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+3056:M 14 May 2019 19:30:37.863 * Increased maximum number of open files to 10032 (it was originally set to 256).
+3056:M 14 May 2019 19:30:37.867 * Running mode=standalone, port=6379.
+3056:M 14 May 2019 19:30:37.867 # Server initialized
+3056:M 14 May 2019 19:30:37.867 * Ready to accept connections
+3056:M 14 May 2019 19:35:38.053 * 100 changes in 300 seconds. Saving...
+3056:M 14 May 2019 19:35:38.058 * Background saving started by pid 3108
+3108:C 14 May 2019 19:35:38.067 * DB saved on disk
+3056:M 14 May 2019 19:35:38.159 * Background saving terminated with success

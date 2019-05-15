@@ -79,6 +79,15 @@ export default {
       }
     },
     setOptions({ expectedData, actualData, date, type } = {}) {
+      var dict = {
+        newVisitis: 'realuserNum',
+        messages: 'realuserTradingVolume',
+        purchases: 'allBalance',
+        shoppings: 'marketmakeIndicator'
+      }
+      console.log(dict[type])
+      this.chart.clear()
+
       if (type === 'shoppings') {
         this.chart.setOption({
           xAxis: {
@@ -108,10 +117,22 @@ export default {
             }
           },
           legend: {
-            data: ['value', 'trade']
+            data: ['做市综合指数', '仓位变动的做市综合指数']
+          },
+          toolbox: {
+            feature: {
+              myTool1: {
+                show: true,
+                title: '详情',
+                icon: 'image://http://echarts.baidu.com/images/favicon.png',
+                onclick: function() {
+                  alert('跳转到详情页')
+                }
+              }
+            }
           },
           series: [{
-            name: 'value',
+            name: '做市综合指数',
             smooth: true,
             type: 'line',
             itemStyle: {
@@ -129,7 +150,7 @@ export default {
             animationEasing: 'cubicInOut'
           },
           {
-            name: 'trade',
+            name: '仓位变动的做市综合指数',
             smooth: true,
             type: 'line',
             itemStyle: {
@@ -174,44 +195,36 @@ export default {
               show: false
             }
           },
-          // legend: {
-          //   data: ['value', 'trade']
-          // },
-          series: [{
-            // name: 'value',
-            smooth: true,
-            type: 'line',
-            itemStyle: {
-              normal: {
-                color: '#FF005A',
-                lineStyle: {
-                  color: '#FF005A',
-                  width: 2
+          toolbox: {
+            feature: {
+              myTool1: {
+                show: true,
+                title: '详情',
+                icon: 'image://http://echarts.baidu.com/images/favicon.png',
+                onclick: function() {
+                  alert('跳转到详情页')
                 }
               }
-            },
-
-            data: expectedData,
-            animationDuration: 2800,
-            animationEasing: 'cubicInOut'
+            }
           },
-          {
-            // name: 'trade',
-            smooth: true,
-            type: 'line',
-            itemStyle: {
-              normal: {
-                color: '#3888fa',
-                lineStyle: {
+          series: [
+            {
+              name: 'amount',
+              smooth: true,
+              type: 'line',
+              itemStyle: {
+                normal: {
                   color: '#3888fa',
-                  width: 2
+                  lineStyle: {
+                    color: '#3888fa',
+                    width: 2
+                  }
                 }
-              }
-            },
-            data: actualData,
-            animationDuration: 2800,
-            animationEasing: 'quadraticOut'
-          }]
+              },
+              data: actualData,
+              animationDuration: 2800,
+              animationEasing: 'quadraticOut'
+            }]
         })
       }
     },

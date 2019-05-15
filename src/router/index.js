@@ -145,7 +145,7 @@ export const asyncRoutes = [
     children: [
       {
         path: '/realuser_chip_distribution',
-        component: () => import('@/views/realuserChipDistribution/realuserChipDistribution'),
+        component: () => import('@/views/realuser/chipDistribution'),
         meta: { title: '用户筹码分布', icon: 'icon' }
       }
     ]
@@ -221,68 +221,6 @@ export const asyncRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/profit',
-  //   component: Layout,
-  //   // redirect: '/balance/show',
-  //   alwaysShow: true,
-  //   meta: { title: '做市盈亏', icon: 'money' },
-  //   children: [
-  //     {
-  //       path: 'btt_info',
-
-  //       component: () => import('@/views/charge/bttCharge'),
-  //       meta: { title: 'btt情况' }
-  //     },
-  //     {
-  //       path: 'ETH_charge',
-
-  //       component: () => import('@/views/charge/ethCharge'),
-  //       meta: { title: '所有手续费的消耗(ETH)' }
-  //     }
-  //   ]
-  // },
-
-  // {
-  //   path: '/permission',
-  //   component: Layout,
-  //   redirect: '/permission/index',
-  //   alwaysShow: true, // will always show the root menu
-  //   meta: {
-  //     title: 'permission',
-  //     icon: 'lock',
-  //     roles: ['admin', 'editor'] // you can set roles in root nav
-  //   },
-  //   children: [
-  //     {
-  //       path: 'page',
-  //       component: () => import('@/views/permission/page'),
-  //       name: 'PagePermission',
-  //       meta: {
-  //         title: 'pagePermission',
-  //         roles: ['admin'] // or you can only set roles in sub nav
-  //       }
-  //     },
-  //     {
-  //       path: 'directive',
-  //       component: () => import('@/views/permission/directive'),
-  //       name: 'DirectivePermission',
-  //       meta: {
-  //         title: 'directivePermission'
-  //         // if do not set roles, means: this page does not require permission
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('@/views/permission/role'),
-  //       name: 'RolePermission',
-  //       meta: {
-  //         title: 'rolePermission',
-  //         roles: ['admin']
-  //       }
-  //     }
-  //   ]
-  // },
 
   {
     path: '/icon',
@@ -302,8 +240,11 @@ export const asyncRoutes = [
   // chartsRouter,
   // nestedRouter,
   tableRouter,
+
   {
     path: '/amount_info',
+    hidden: true,
+    // 隐藏起来
     component: Layout,
     children: [
       {
@@ -312,7 +253,57 @@ export const asyncRoutes = [
         meta: { title: '数量信息', icon: 'form' }
       }
     ]
+  },
+
+  // 首页信息详情
+  // 真实用户数量展示
+  {
+    path: '/realuser_num_info',
+    component: Layout,
+    children: [
+      {
+        path: '/realuser_num_info',
+        component: () => import('@/views/realuser/tradingNum'),
+        meta: { title: '真实用户数量详情', icon: 'form' }
+      }
+    ]
+  },
+  // 真实用户交易量展示
+  {
+    path: '/realuser_trading_volume_info',
+    component: Layout,
+    children: [
+      {
+        path: '/realuser_trading_volume_info',
+        component: () => import('@/views/realuser/tradingVolume'),
+        meta: { title: '真实用户交易量详情', icon: 'form' }
+      }
+    ]
   }
+  // // 做市总净值展示
+  // {
+  //   path: '/marketmake_balance_info',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/marketmake_balance_info',
+  //       component: () => import('@/views/statistics/amountInfo'),
+  //       meta: { title: '做市总净值变化', icon: 'form' }
+  //     }
+  //   ]
+  // },
+  // // 做市综合指数变化
+  // {
+  //   path: '/marketmake_indicator_info',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/marketmake_indicator_info',
+  //       component: () => import('@/views/statistics/amountInfo'),
+  //       meta: { title: '做市综合指数变化', icon: 'form' }
+  //     }
+  //   ]
+  // },
 
   // {
   //   path: '/example',

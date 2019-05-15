@@ -127,12 +127,12 @@ export default {
     setData(data) {
       lineChartData['newVisitis']['actualData'] = data.user_num
       lineChartData['messages']['actualData'] = data.deal_base_eth
-      lineChartData['purchases']['actualData'] = data.value
+      lineChartData['purchases']['actualData'] = data.eth_amount
       lineChartData['shoppings']['actualData'] = data.indicator_value_base_trade
 
-      lineChartData['newVisitis']['expectedData'] = data.user_num
-      lineChartData['messages']['expectedData'] = data.deal_base_eth
-      lineChartData['purchases']['expectedData'] = data.value
+      // lineChartData['newVisitis']['expectedData'] = data.user_num
+      // lineChartData['messages']['expectedData'] = data.deal_base_eth
+      // lineChartData['purchases']['expectedData'] = data.eth_amount
       lineChartData['shoppings']['expectedData'] = data.indicator_value_base_value
 
       lineChartData['newVisitis']['date'] = data.time
