@@ -80,10 +80,14 @@ export default {
     },
     setOptions({ expectedData, actualData, date, type } = {}) {
       var dict = {
-        newVisitis: 'realuserNum',
-        messages: 'realuserTradingVolume',
-        purchases: 'allBalance',
-        shoppings: 'marketmakeIndicator'
+        newVisitis: 'http://127.0.0.1:9527/#/balance/totalETH',
+        // realuserNum,
+        messages: 'http://127.0.0.1:9527/#/balance/totalETH',
+        // realuserTradingVolume,
+        purchases: 'http://127.0.0.1:9527/#/balance/totalETH',
+        // allBalance
+        shoppings: 'http://127.0.0.1:9527/#/marketmakeIndicator'
+        // marketmakeIndicator
       }
       console.log(dict[type])
       this.chart.clear()
@@ -126,7 +130,7 @@ export default {
                 title: '详情',
                 icon: 'image://http://echarts.baidu.com/images/favicon.png',
                 onclick: function() {
-                  alert('跳转到详情页')
+                  window.location.href = dict[type]
                 }
               }
             }
@@ -202,7 +206,7 @@ export default {
                 title: '详情',
                 icon: 'image://http://echarts.baidu.com/images/favicon.png',
                 onclick: function() {
-                  alert('跳转到详情页')
+                  window.location.href = dict[type]
                 }
               }
             }

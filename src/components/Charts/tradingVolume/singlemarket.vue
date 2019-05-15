@@ -121,7 +121,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['all', 'robot', 'realuser'],
+          data: ['总交易量', '做市账户', '真实用户'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -170,7 +170,7 @@ export default {
           }
         }],
         series: [{
-          name: 'all',
+          name: '总交易量',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -204,7 +204,7 @@ export default {
           },
           data: data.all['all_deal']
         }, {
-          name: 'robot',
+          name: '做市账户',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -238,7 +238,7 @@ export default {
           },
           data: data.robot['all_deal']
         }, {
-          name: 'realuser',
+          name: '真实用户',
           type: 'line',
           smooth: true,
           symbol: 'circle',

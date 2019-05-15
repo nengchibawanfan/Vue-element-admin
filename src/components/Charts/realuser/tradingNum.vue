@@ -2,15 +2,16 @@
   <div>
     <div class="inputDiv">
       <form>
-        <el-input v-model="symbolName" placeholder="请输入CoinName：MT" class="symbol-input" />
 
-        <select v-model="exchangeName" class="exchange-select">
-          <option disabled value="">请选择交易所</option>
-          <option>bytetrade</option>
-          <option>bytetrade_witness</option>
-          <option>huobipro_xiaocong</option>
-          <option>binance</option>
-          <option>okex</option>
+        <select v-model="interval" class="exchange-select">
+          <option disabled value="">请选择时间间隔</option>
+          <option>1min</option>
+          <option>5min</option>
+          <option>30min</option>
+          <option>1h</option>
+          <option>1d</option>
+          <option>1w</option>
+
         </select>
         <el-date-picker
           v-model="start_time"
@@ -19,7 +20,7 @@
           value-format="yyyy-MM-ddThh:mm:ssZ"
           placeholder="开始时间"
           class="date-input"
-        /> -
+        />
         <el-date-picker
           v-model="end_time"
           type="datetime"
@@ -28,15 +29,6 @@
           placeholder="结束时间"
           class="date-input"
         />
-        <select v-model="interval" class="exchange-select">
-          <option disabled value="">时间间隔</option>
-          <option>1min</option>
-          <option>5min</option>
-          <option>30min</option>
-          <option>1h</option>
-          <option>1d</option>
-          <option>1w</option>
-        </select>
         <input type="button" value="提交" @click="getdata">
       </form>
     </div>
@@ -80,11 +72,9 @@ export default {
     return {
       chart: null,
       hh: '650px',
-      symbolName: '',
-      exchangeName: '',
+      interval: '',
       start_time: '',
       end_time: '',
-      interval: '',
       isActive: true
 
     }
@@ -106,18 +96,9 @@ export default {
 
       const params = {
         // 直接访问页面
-        'exchange': self.exchangeName || 'bytetrade',
-        'coin_name': self.symbolName || 'MT',
-        'interval': self.interval || '1h'
-
-        // 'exchange': this.$route.query.exchange || 'bytetrade',
-        // 'coinid': this.$route.query.coinid || 2,
-
-        // 'exchange': this.$route.params.exchange || 'bytetrade',
-        // 'coinid': this.$route.params.coinid || 2,
-
-        // 'start_time': self.start_time || '',
-        // 'end_time': self.end_time || ''
+        'interval': self.interval || '1d',
+        'start_time': self.start_time,
+        'end_time': self.end_time
       }
       balance.getBalanceData(params).then(res => {
         self.handleRequest(res, self.drawChart)
@@ -187,20 +168,6 @@ export default {
             }
 
           },
-          // splitLine: {
-          //   show: false
-          // },
-          // axisTick: {
-          //   show: false
-          // },
-          // splitArea: {
-          //   show: false
-          // },
-          // axisLabel: {
-          //   interval: 30
-          //   // rotate: 45
-
-          // },
           data: data.time
         }],
         yAxis: [{

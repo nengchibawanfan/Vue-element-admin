@@ -116,7 +116,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['总交易量', '真实用户', '机器人兄弟'],
+          data: ['总交易量', '真实用户', '做市账户'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -199,7 +199,7 @@ export default {
           data: data.all['deal_base_eth']
         },
         {
-          name: '机器人兄弟',
+          name: '做市账户',
           type: 'line',
           smooth: true,
           symbol: 'circle',

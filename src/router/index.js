@@ -256,54 +256,46 @@ export const asyncRoutes = [
   },
 
   // 首页信息详情
-  // 真实用户数量展示
+
+  // 做市综合指数
   {
-    path: '/realuser_num_info',
+    path: '/marketmakeIndicator',
+    hidden: true,
+    // 隐藏起来
     component: Layout,
     children: [
       {
-        path: '/realuser_num_info',
-        component: () => import('@/views/realuser/tradingNum'),
-        meta: { title: '真实用户数量详情', icon: 'form' }
-      }
-    ]
-  },
-  // 真实用户交易量展示
-  {
-    path: '/realuser_trading_volume_info',
-    component: Layout,
-    children: [
-      {
-        path: '/realuser_trading_volume_info',
-        component: () => import('@/views/realuser/tradingVolume'),
-        meta: { title: '真实用户交易量详情', icon: 'form' }
+        path: '/marketmakeIndicator',
+        component: () => import('@/views/marketmakeIndicator/marketmakeIndicator'),
+        meta: { title: '做市综合指数', icon: 'form' }
       }
     ]
   }
-  // // 做市总净值展示
+
+  // // 真实用户数量展示
   // {
-  //   path: '/marketmake_balance_info',
+  //   path: '/realuser_num_info',
   //   component: Layout,
   //   children: [
   //     {
-  //       path: '/marketmake_balance_info',
-  //       component: () => import('@/views/statistics/amountInfo'),
-  //       meta: { title: '做市总净值变化', icon: 'form' }
+  //       path: '/realuser_num_info',
+  //       component: () => import('@/views/realuser/tradingNum'),
+  //       meta: { title: '真实用户数量详情', icon: 'form' }
   //     }
   //   ]
   // },
-  // // 做市综合指数变化
+  // // 真实用户交易量展示
   // {
-  //   path: '/marketmake_indicator_info',
+  //   path: '/realuser_trading_volume_info',
   //   component: Layout,
   //   children: [
   //     {
-  //       path: '/marketmake_indicator_info',
-  //       component: () => import('@/views/statistics/amountInfo'),
-  //       meta: { title: '做市综合指数变化', icon: 'form' }
+  //       path: '/realuser_trading_volume_info',
+  //       component: () => import('@/views/realuser/tradingVolume'),
+  //       meta: { title: '真实用户交易量详情', icon: 'form' }
   //     }
   //   ]
-  // },
+  // }
 
   // {
   //   path: '/example',
