@@ -89,7 +89,7 @@ export default {
         'end_time': self.end_time || '',
         'interval': self.interval || '1d'
       }
-      tradingVolume.getAllTradingVolume(params).then(res => {
+      tradingVolume.getRealuserNum(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
@@ -106,7 +106,7 @@ export default {
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: '总交易量统计',
+          text: '真实用户人数',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
@@ -122,19 +122,19 @@ export default {
             }
           }
         },
-        legend: {
-          top: 20,
-          icon: 'rect',
-          itemWidth: 14,
-          itemHeight: 5,
-          itemGap: 13,
-          data: ['总交易量', '真实用户', '做市账户'],
-          right: '4%',
-          textStyle: {
-            fontSize: 12,
-            color: '#F1F1F3'
-          }
-        },
+        // legend: {
+        //   top: 20,
+        //   icon: 'rect',
+        //   itemWidth: 14,
+        //   itemHeight: 5,
+        //   itemGap: 13,
+        //   data: ['总交易量', '真实用户', '做市账户'],
+        //   right: '4%',
+        //   textStyle: {
+        //     fontSize: 12,
+        //     color: '#F1F1F3'
+        //   }
+        // },
         grid: {
           top: 100,
           left: '2%',
@@ -154,7 +154,7 @@ export default {
         }],
         yAxis: [{
           type: 'value',
-          name: '交易量（ETH）',
+          name: '真实用户人数',
           axisTick: {
             show: false
           },
@@ -175,110 +175,42 @@ export default {
             }
           }
         }],
-        series: [{
-          name: '总交易量',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(137, 189, 27, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(137, 189, 27, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(137,189,27)',
-              borderColor: 'rgba(137,189,2,0.27)',
-              borderWidth: 12
+        series: [
+          {
+            name: '真实用户',
+            type: 'line',
+            smooth: true,
+            symbol: 'circle',
+            symbolSize: 5,
+            showSymbol: false,
+            lineStyle: {
+              normal: {
+                width: 1
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(0, 136, 212, 0.3)'
+                }, {
+                  offset: 0.8,
+                  color: 'rgba(0, 136, 212, 0)'
+                }], false),
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowBlur: 10
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: 'rgb(0,136,212)',
+                borderColor: 'rgba(0,136,212,0.2)',
+                borderWidth: 12
 
-            }
-          },
-          data: data.all['deal_base_eth']
-        },
-        {
-          name: '做市账户',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(219, 50, 51, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(219, 50, 51, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(219,50,51)',
-              borderColor: 'rgba(219,50,51,0.2)',
-              borderWidth: 12
-            }
-          },
-          data: data.robot['deal_base_eth']
-        },
-        {
-          name: '真实用户',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(0, 136, 212, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(0, 136, 212, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(0,136,212)',
-              borderColor: 'rgba(0,136,212,0.2)',
-              borderWidth: 12
-
-            }
-          },
-          data: data.realuser['deal_base_eth']
-        }]
+              }
+            },
+            data: data.real_user_num
+          }]
       })
     }
   }

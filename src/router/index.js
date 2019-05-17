@@ -167,6 +167,12 @@ export const asyncRoutes = [
 
         component: () => import('@/views/tradingVolume/singlemarket'),
         meta: { title: '自定义市场' }
+      },
+
+      {
+        path: 'realuser_num',
+        component: () => import('@/views/tradingVolume/realuser_num'),
+        meta: { title: '真实用户交易人数' }
       }
     ]
   },

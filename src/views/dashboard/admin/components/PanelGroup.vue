@@ -94,6 +94,7 @@ export default {
       }
     },
     setData(data) {
+      console.log(data)
       this.realUserNum = data.real_user_num
       this.realUserTradingVolume = data.deal_base_eth
       this.totaleth = data.total_eth

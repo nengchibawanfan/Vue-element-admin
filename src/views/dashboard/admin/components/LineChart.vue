@@ -80,9 +80,9 @@ export default {
     },
     setOptions({ expectedData, actualData, date, type } = {}) {
       var dict = {
-        newVisitis: 'http://18.179.204.45:9527/#/balance/totalETH',
+        newVisitis: 'http://18.179.204.45:9527/#/tradingVol/realuser_num',
         // realuserNum,
-        messages: 'http://18.179.204.45:9527/#/balance/totalETH',
+        messages: 'http://18.179.204.45:9527/#/tradingVol/allmarket',
         // realuserTradingVolume,
         purchases: 'http://18.179.204.45:9527/#/balance/totalETH',
         // allBalance

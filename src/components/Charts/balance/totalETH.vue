@@ -116,7 +116,7 @@ export default {
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: '所有资产换算为ETH',
+          text: '总净值',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
@@ -138,7 +138,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['ETH'],
+          data: ['ETH', 'USDT'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -164,7 +164,7 @@ export default {
         }],
         yAxis: [{
           type: 'value',
-          name: 'ETH总量',
+          name: '总净值',
           axisTick: {
             show: false
           },
@@ -219,6 +219,40 @@ export default {
             }
           },
           data: data.amount
+        },
+        {
+          name: 'USDT',
+          type: 'line',
+          smooth: true,
+          symbol: 'circle',
+          symbolSize: 5,
+          showSymbol: false,
+          lineStyle: {
+            normal: {
+              width: 1
+            }
+          },
+          areaStyle: {
+            normal: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: 'rgba(219, 50, 51, 0.3)'
+              }, {
+                offset: 0.8,
+                color: 'rgba(219, 50, 51, 0)'
+              }], false),
+              shadowColor: 'rgba(0, 0, 0, 0.1)',
+              shadowBlur: 10
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: 'rgb(219,50,51)',
+              borderColor: 'rgba(219,50,51,0.2)',
+              borderWidth: 12
+            }
+          },
+          data: data.value
         }]
       })
     }
