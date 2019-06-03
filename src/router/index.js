@@ -155,7 +155,7 @@ export const asyncRoutes = [
     component: Layout,
     // redirect: '/balance/show',
     alwaysShow: true,
-    meta: { title: '交易量统计', icon: 'chart' },
+    meta: { title: '交易统计', icon: 'chart' },
     children: [
       {
         path: 'allmarket',

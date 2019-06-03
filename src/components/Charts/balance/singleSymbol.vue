@@ -131,119 +131,116 @@ export default {
       }
     },
     drawChart(data) {
+      console.log(data)
+
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
-        backgroundColor: '#344b58',
+        backgroundColor: '#394056',
         title: {
           text: '单个资产详情',
           subtext: data.coinname,
           x: '20',
-          top: '20',
+          top: 20,
           textStyle: {
-            color: '#fff',
-            fontSize: '22'
-          },
-          subtextStyle: {
-            color: '#90979c',
-            fontSize: '16'
+            fontWeight: 'normal',
+            fontSize: 18,
+            color: '#F1F1F3'
           }
         },
         tooltip: {
           trigger: 'axis',
           axisPointer: {
-            textStyle: {
-              color: '#fff'
+            lineStyle: {
+              color: '#57617B'
             }
-          }
-        },
-        grid: {
-          left: '5%',
-          right: '5%',
-          borderWidth: 0,
-          top: 150,
-          bottom: 95,
-          textStyle: {
-            color: '#fff'
           }
         },
         legend: {
-          // x: '5%',
-          top: '10%',
+          top: 20,
+          icon: 'rect',
+          itemWidth: 14,
+          itemHeight: 5,
+          itemGap: 13,
+          data: ['total', 'asETH', 'asUSDT'],
+          right: '4%',
           textStyle: {
-            color: '#90979c'
-          },
-          // data: ['free', 'male', 'average']
-          data: ['free', 'used', 'total', 'asETH']
-
+            fontSize: 12,
+            color: '#F1F1F3'
+          }
         },
-        calculable: true,
+        grid: {
+          top: 100,
+          left: '2%',
+          right: '2%',
+          bottom: '2%',
+          containLabel: true
+        },
         xAxis: [{
           type: 'category',
+          boundaryGap: false,
           name: 'Time', // 坐标轴名称。
           nameLocation: 'end', // 坐标轴名称显示位置。
+
           axisLine: {
             lineStyle: {
-              color: '#90979c'
+              color: '#57617B'
             }
-
           },
-          // splitLine: {
-          //   show: false
-          // },
-          // axisTick: {
-          //   show: false
-          // },
-          // splitArea: {
-          //   show: false
-          // },
-          // axisLabel: {
-          //   interval: 30
-          //   // rotate: 45
-
-          // },
           data: data.time
         }],
         yAxis: [{
           type: 'value',
+          name: 'Balance',
           scale: true,
           boundaryGap: [0.2, 0.2],
-          name: 'Balance',
-          splitLine: {
+          axisTick: {
             show: false
           },
           axisLine: {
             lineStyle: {
-              color: '#90979c'
+              color: '#57617B'
             }
           },
-          axisTick: {
-            show: false
-          },
           axisLabel: {
-            interval: 0
-          },
-          splitArea: {
-            show: false
+            margin: 10,
+            textStyle: {
+              fontSize: 14
+            }
           }
         }],
+
         series: [
           {
+            smooth: true,
             name: 'total',
             type: 'line',
             stack: 'total',
             symbolSize: 10,
             symbol: 'circle',
+            lineStyle: {
+              normal: {
+                width: 1
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(137, 189, 27, 0.3)'
+                }, {
+                  offset: 0.8,
+                  color: 'rgba(137, 189, 27, 0)'
+                }], false),
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowBlur: 10
+              }
+            },
             itemStyle: {
               normal: {
-                color: 'rgba(252,230,48,1)',
-                barBorderRadius: 0,
-                label: {
-                  show: false,
-                  position: 'top',
-                  formatter(p) {
-                    return p.value > 0 ? p.value : ''
-                  }
-                }
+                color: 'rgb(137,189,27)',
+                borderColor: 'rgba(137,189,2,0.27)',
+                borderWidth: 12
+
               }
             },
             data: data.total
@@ -254,22 +251,71 @@ export default {
             stack: 'total',
             symbolSize: 10,
             symbol: 'circle',
+            smooth: true, // 这句就是让曲线变平滑的
+
+            lineStyle: {
+              normal: {
+                width: 1
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(219, 50, 51, 0.3)'
+                }, {
+                  offset: 0.8,
+                  color: 'rgba(219, 50, 51, 0)'
+                }], false),
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowBlur: 10
+              }
+            },
             itemStyle: {
               normal: {
-                color: 'rgba(252,20,48,1)',
-                barBorderRadius: 0,
-                label: {
-                  show: false,
-                  position: 'top',
-                  formatter(p) {
-                    return p.value > 0 ? p.value : ''
-                  }
-                }
+                color: 'rgb(219,50,51)',
+                borderColor: 'rgba(219,50,51,0.2)',
+                borderWidth: 12
               }
             },
             data: data.value
-          }
-        ]
+          },
+          {
+            name: 'asUSDT',
+            type: 'line',
+            stack: 'total',
+            symbolSize: 10,
+            smooth: true, // 这句就是让曲线变平滑的
+
+            symbol: 'circle',
+            lineStyle: {
+              normal: {
+                width: 1
+              }
+            },
+            areaStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(0, 136, 212, 0.3)'
+                }, {
+                  offset: 0.8,
+                  color: 'rgba(0, 136, 212, 0)'
+                }], false),
+                shadowColor: 'rgba(0, 0, 0, 0.1)',
+                shadowBlur: 10
+              }
+            },
+            itemStyle: {
+              normal: {
+                color: 'rgb(0,136,212)',
+                borderColor: 'rgba(0,136,212,0.2)',
+                borderWidth: 12
+
+              }
+            },
+            data: data.asusdt
+          }]
       })
     }
   }

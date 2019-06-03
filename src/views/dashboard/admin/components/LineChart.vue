@@ -79,14 +79,24 @@ export default {
       }
     },
     setOptions({ expectedData, actualData, date, type } = {}) {
+      // var dict = {
+      //   newVisitis: 'http://18.179.204.45:9527/#/tradingVol/realuser_num',
+      //   // realuserNum,
+      //   messages: 'http://18.179.204.45:9527/#/tradingVol/allmarket',
+      //   // realuserTradingVolume,
+      //   purchases: 'http://18.179.204.45:9527/#/balance/totalETH',
+      //   // allBalance
+      //   shoppings: 'http://18.179.204.45:9527/#/marketmakeIndicator'
+      //   // marketmakeIndicator
+      // }
       var dict = {
-        newVisitis: 'http://18.179.204.45:9527/#/tradingVol/realuser_num',
+        newVisitis: 'http://127.0.0.1:9527/#/tradingVol/realuser_num',
         // realuserNum,
-        messages: 'http://18.179.204.45:9527/#/tradingVol/allmarket',
+        messages: 'http://127.0.0.1:9527/#/tradingVol/allmarket',
         // realuserTradingVolume,
-        purchases: 'http://18.179.204.45:9527/#/balance/totalETH',
+        purchases: 'http://127.0.0.1:9527/#/balance/totalETH',
         // allBalance
-        shoppings: 'http://18.179.204.45:9527/#/marketmakeIndicator'
+        shoppings: 'http://127.0.0.1:9527/#/marketmakeIndicator'
         // marketmakeIndicator
       }
       console.log(dict[type])

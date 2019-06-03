@@ -63,6 +63,7 @@ export default {
       total: 0,
       listLoading: true,
       isActive: true
+      // k
     }
   },
   created() {
@@ -97,6 +98,7 @@ export default {
       // 打开loading
       var params = {
         'market_name': marketName || 'MT/ETH'
+        // "k": k || 100
       }
       realuserChipDistribution.getRealuserChipDistributionInfo(params).then(res => {
         console.log(res)
@@ -114,7 +116,8 @@ export default {
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         title: {
-          text: data.market_name,
+          // text: data.market_name + "   " + data.side + "    " + data.start_time + " - " + data.end_time,
+          text: data.market_name + '   ' + data.side,
           left: 10
         },
         toolbox: {

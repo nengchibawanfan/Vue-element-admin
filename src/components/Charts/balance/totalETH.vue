@@ -21,12 +21,12 @@
         />
         <select v-model="interval" class="exchange-select">
           <option disabled value="">时间间隔</option>
-          <option>1min</option>
+          <!-- <option>1min</option> -->
           <option>5min</option>
-          <option>30min</option>
+          <!-- <option>30min</option> -->
           <option>1h</option>
           <option>1d</option>
-          <option>1w</option>
+          <!-- <option>1w</option> -->
         </select>
 
         <input type="button" value="提交" @click="getdata">
@@ -94,7 +94,7 @@ export default {
       this.isActive = true
 
       const params = {
-        'interval': self.interval || '1h',
+        'interval': self.interval || '1d',
         'start_time': self.start_time || '',
         'end_time': self.end_time || ''
       }

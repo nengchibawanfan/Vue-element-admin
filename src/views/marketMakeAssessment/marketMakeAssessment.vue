@@ -161,14 +161,14 @@ export default {
 
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
-        backgroundColor: '#394056',
+        // backgroundColor: '#394056',
         title: {
           top: 20,
           text: data.market_name,
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,
-            color: '#F1F1F3'
+            color: '#394056'
           },
           left: '1%'
         },
@@ -187,7 +187,7 @@ export default {
           right: '4%',
           textStyle: {
             fontSize: 12,
-            color: '#F1F1F3'
+            color: '#394056'
           }
         },
         grid: {
@@ -209,7 +209,7 @@ export default {
         }],
         yAxis: [{
           type: 'value',
-          name: '做市深度指标',
+          name: '各交易所流动性',
           axisTick: {
             show: false
           },
