@@ -101,6 +101,8 @@ export default {
     },
     drawChart(data) {
       console.log(data)
+      const self = this
+
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
         backgroundColor: '#394056',
@@ -279,6 +281,13 @@ export default {
           },
           data: data.realuser['deal_base_eth']
         }]
+      })
+      this.chart.on('click', function(params) {
+        console.log(params) // 这里根据param填写你的跳转逻辑
+
+        self.$router.push({ name: 'tradingvolumedetails', params: { date: params['name'] }})
+
+        // window.location.href = "http://127.0.0.1:9527/#/tradingVol/date/:" + params["name"]
       })
     }
   }

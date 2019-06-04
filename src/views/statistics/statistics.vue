@@ -49,14 +49,21 @@
       </el-table-column>
       <el-table-column :label="$t('净值（USDT）')" width="140px" align="center">
         <template slot-scope="scope">
-          <span>{{ scope.row.end_value }}</span>
+          <span>{{ scope.row.end_value_usdt }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('盈亏')" class-name="status-col" width="140px">
+      <el-table-column :label="$t('盈亏(ETH)')" class-name="status-col" width="140px">
         <template slot-scope="{row}">
           <el-tag :type="row.value_status">
-            {{ row.value_change_ratio }}
+            {{ row.value_change }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('盈亏(USDT)')" class-name="status-col" width="140px">
+        <template slot-scope="{row}">
+          <el-tag :type="row.value_status">
+            {{ row.value_change_usdt }}
           </el-tag>
         </template>
       </el-table-column>

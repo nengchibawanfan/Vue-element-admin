@@ -19,6 +19,12 @@ function getSingleMarketTradingVolume(params) {
   return axios.get('http://127.0.0.1:5001/get_trading_volume_single_market', { params: params })
 }
 
+// 获取某天交易量的分布
+function getSomedayTradingVolume(params) {
+  // return axios.get('http://18.179.204.45:5001/get_realuser_num_info', { params: params })
+  return axios.get('http://127.0.0.1:5001/get_tradingvolume_thatday', { params: params })
+}
+
 // 获取真实用户数量
 function getRealuserNum(params) {
   // return axios.get('http://18.179.204.45:5001/get_realuser_num_info', { params: params })
@@ -28,6 +34,7 @@ function getRealuserNum(params) {
 module.exports = {
   getAllTradingVolume,
   getSingleMarketTradingVolume,
+  getSomedayTradingVolume,
   getRealuserNum
 }
 

@@ -1,21 +1,19 @@
 <template>
   <div class="app-container">
-    <div>
-      <el-table
-        v-loading="listLoading"
-        :data="tableData"
-        border
-        fit
-        highlight-current-row
-        style="width: 190px;"
-      >
-        <el-table-column :label="$t('市场')" prop="market_name" align="center" width="190px">
-          <template slot-scope="scope">
-            <span class="link-type" @click="getEfficiencyInfo(scope.row.market_name)">{{ scope.row.market_name }}</span>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+    <el-table
+      v-loading="listLoading"
+      :data="tableData"
+      border
+      fit
+      highlight-current-row
+      style="width: 190px;"
+    >
+      <el-table-column :label="$t('市场')" prop="market_name" align="center" width="190px">
+        <template slot-scope="scope">
+          <span class="link-type" @click="getEfficiencyInfo(scope.row.market_name)">{{ scope.row.market_name }}</span>
+        </template>
+      </el-table-column>
+    </el-table>
 
     <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
 
@@ -35,9 +33,7 @@ import waves from '@/directive/waves' // Waves directive
 
 export default {
   name: 'ComplexTable',
-  components: {
-    VueElementLoading
-  },
+  components: { VueElementLoading },
   directives: { waves },
   mixins: [resize],
   props: {
@@ -102,7 +98,7 @@ export default {
         'market_name': marketName || 'MT/ETH'
         // "k": k || 100
       }
-      realuserChipDistribution.getRealuserChipDistributionInfo(params).then(res => {
+      realuserChipDistribution.getSingleRealuserChipDistributionInfo(params).then(res => {
         console.log(res)
         self.handleRequest(res, self.drawChart)
         this.isActive = false
@@ -119,11 +115,15 @@ export default {
       this.chart.setOption({
         title: {
           // text: data.market_name + "   " + data.side + "    " + data.start_time + " - " + data.end_time,
-          text: data.market_name + '   ' + data.side,
-          left: 10
+          text: data.market_name,
+          left: 20
         },
         toolbox: {
+          show: true,
           feature: {
+            // 显示数据试图
+            dataView: { show: true, readOnly: false },
+
             dataZoom: {
               yAxisIndex: false
             },
@@ -141,11 +141,15 @@ export default {
             }
           }
         },
+        calculable: true,
         tooltip: {
           trigger: 'axis',
           axisPointer: {
             type: 'shadow'
           }
+        },
+        legend: {
+          data: ['BUY', 'SELL', 'in', 'out']
         },
         grid: {
           bottom: 90
@@ -155,31 +159,42 @@ export default {
         }, {
           type: 'slider'
         }],
-        yAxis: {
-          data: data.avg_price,
-          silent: false,
-          splitLine: {
-            show: false
-          },
-          splitArea: {
-            show: false
+        xAxis: [
+          {
+            type: 'value'
+          }],
+        yAxis: [
+          {
+            type: 'category',
+            data: data.price
           }
-        },
-        xAxis: {
-          splitArea: {
-            show: false
-          }
-        },
-        series: [{
-          type: 'bar',
-          data: data.amount,
-          // Set `large` for large data amount
-          large: true
-        }]
+        ],
+        series: [
 
+          {
+            name: 'BUY',
+            type: 'bar',
+            data: data.BUY
+          },
+          {
+            name: 'SELL',
+            type: 'bar',
+            data: data.SELL
+          },
+          {
+            name: 'in',
+            type: 'bar',
+            data: data.in
+          },
+          {
+            name: 'out',
+            type: 'bar',
+            data: data.out
+          }
+
+        ]
       })
     }
-
   }
 }
 </script>

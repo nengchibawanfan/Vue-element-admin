@@ -142,11 +142,18 @@ export const asyncRoutes = [
   {
     path: '/realuser_chip_distribution',
     component: Layout,
+    alwaysShow: true,
+    meta: { title: '筹码分布', icon: 'chart' },
     children: [
       {
         path: '/realuser_chip_distribution',
         component: () => import('@/views/realuser/chipDistribution'),
-        meta: { title: '用户筹码分布', icon: 'icon' }
+        meta: { title: '所有用户筹码分布', icon: 'icon' }
+      },
+      {
+        path: '/single_realuser_chip_distribution',
+        component: () => import('@/views/realuser/singleChipDistribution'),
+        meta: { title: '单用户角度筹码分布', icon: 'icon' }
       }
     ]
   },
@@ -160,13 +167,26 @@ export const asyncRoutes = [
       {
         path: 'allmarket',
         component: () => import('@/views/tradingVolume/allmarket'),
-        meta: { title: '所有市场' }
+        meta: { title: '所有市场交易量' }
       },
       {
         path: 'singlemarket',
 
         component: () => import('@/views/tradingVolume/singlemarket'),
-        meta: { title: '自定义市场' }
+        meta: { title: '自定义市场交易量' }
+      },
+
+      {
+        // path: 'tradingVol/date/:date',
+        path: 'tradingVol',
+
+        name: 'tradingvolumedetails',
+        // hidden: true,
+        // 隐藏起来
+        // component: Layout,
+        component: () => import('@/views/tradingVolume/tradingvolumedetails'),
+        meta: { title: '单日交易量分布' }
+
       },
 
       {
