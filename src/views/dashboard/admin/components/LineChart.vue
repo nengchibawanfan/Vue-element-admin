@@ -79,28 +79,19 @@ export default {
       }
     },
     setOptions({ expectedData, actualData, date, type } = {}) {
-      // var dict = {
-      //   newVisitis: 'http://18.179.204.45:9527/#/tradingVol/realuser_num',
-      //   // realuserNum,
-      //   messages: 'http://18.179.204.45:9527/#/tradingVol/allmarket',
-      //   // realuserTradingVolume,
-      //   purchases: 'http://18.179.204.45:9527/#/balance/totalETH',
-      //   // allBalance
-      //   shoppings: 'http://18.179.204.45:9527/#/marketmakeIndicator'
-      //   // marketmakeIndicator
-      // }
       var dict = {
-        newVisitis: 'http://127.0.0.1:9527/#/tradingVol/realuser_num',
+        newVisitis: '/#/tradingVol/realuser_num',
         // realuserNum,
-        messages: 'http://127.0.0.1:9527/#/tradingVol/allmarket',
+        messages: '/#/tradingVol/allmarket',
         // realuserTradingVolume,
-        purchases: 'http://127.0.0.1:9527/#/balance/totalETH',
+        purchases: '/#/balance/totalETH',
         // allBalance
-        shoppings: 'http://127.0.0.1:9527/#/marketmakeIndicator'
+        shoppings: '/marketmakeIndicator'
         // marketmakeIndicator
       }
       console.log(dict[type])
       this.chart.clear()
+      var self = this
 
       if (type === 'shoppings') {
         this.chart.setOption({
@@ -140,7 +131,8 @@ export default {
                 title: '详情',
                 icon: 'image://http://echarts.baidu.com/images/favicon.png',
                 onclick: function() {
-                  window.location.href = dict[type]
+                  // self.$router.push({ name: dict[type] })
+                  self.$router.push({ path: dict[type] })
                 }
               }
             }
@@ -165,6 +157,85 @@ export default {
           },
           {
             name: '仓位变动的做市综合指数',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
+              normal: {
+                color: '#3888fa',
+                lineStyle: {
+                  color: '#3888fa',
+                  width: 2
+                }
+              }
+            },
+            data: actualData,
+            animationDuration: 2800,
+            animationEasing: 'quadraticOut'
+          }]
+        })
+      } else if (type === 'purchases') {
+        this.chart.setOption({
+          xAxis: {
+            data: date,
+            boundaryGap: false,
+            axisTick: {
+              show: false
+            }
+          },
+          grid: {
+            left: 10,
+            right: 10,
+            bottom: 20,
+            top: 30,
+            containLabel: true
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            },
+            padding: [5, 10]
+          },
+          yAxis: {
+            axisTick: {
+              show: false
+            }
+          },
+          legend: {
+            data: ['USDT', 'ETH']
+          },
+          toolbox: {
+            feature: {
+              myTool1: {
+                show: true,
+                title: '详情',
+                icon: 'image://http://echarts.baidu.com/images/favicon.png',
+                onclick: function() {
+                  window.location.href = dict[type]
+                }
+              }
+            }
+          },
+          series: [{
+            name: 'USDT',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
+              normal: {
+                color: '#FF005A',
+                lineStyle: {
+                  color: '#FF005A',
+                  width: 2
+                }
+              }
+            },
+
+            data: expectedData,
+            animationDuration: 2800,
+            animationEasing: 'cubicInOut'
+          },
+          {
+            name: 'ETH',
             smooth: true,
             type: 'line',
             itemStyle: {

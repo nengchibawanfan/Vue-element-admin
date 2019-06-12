@@ -108,7 +108,7 @@ export default {
         // 直接访问页面
         'exchange': self.exchangeName || 'bytetrade',
         'coin_name': self.symbolName || 'MT',
-        'interval': self.interval || '1h'
+        'interval': self.interval || '1d'
 
         // 'exchange': this.$route.query.exchange || 'bytetrade',
         // 'coinid': this.$route.query.coinid || 2,
@@ -137,7 +137,7 @@ export default {
       this.chart.setOption({
         backgroundColor: '#394056',
         title: {
-          text: '单个资产详情',
+          text: '单个资产详情（包含外部交易所和见证节点）',
           subtext: data.coinname,
           x: '20',
           top: 20,

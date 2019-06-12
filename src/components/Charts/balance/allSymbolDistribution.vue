@@ -92,7 +92,7 @@ export default {
             var value = params.value
             var res
 
-            res = '折算为ETH <br/>' + name + ':' + value + '(' + percent + '%)<br/> 总数量 : ' + data.data_amount[name]
+            res = name + ' <br/>' + '折合为ETH:' + value + '(' + percent + '%)<br/> 总数量 : ' + data.data_amount[name]
 
             return res
           }

@@ -1,23 +1,27 @@
 <template>
   <div class="app-container">
-    <el-table
-      v-loading="listLoading"
-      :data="tableData"
-      border
-      fit
-      highlight-current-row
-      style="width: 190px;"
-    >
-      <el-table-column :label="$t('市场')" prop="market_name" align="center" width="190px">
-        <template slot-scope="scope">
-          <span class="link-type" @click="getEfficiencyInfo(scope.row.market_name)">{{ scope.row.market_name }}</span>
-        </template>
-      </el-table-column>
-    </el-table>
+    <div class="table">
+      <el-table
+        v-loading="listLoading"
+        :data="tableData"
+        border
+        fit
+        highlight-current-row
+        style="width: 190px;"
+      >
+        <el-table-column :label="$t('市场')" prop="market_name" align="center" width="190px">
+          <template slot-scope="scope">
+            <span class="link-type" @click="getEfficiencyInfo(scope.row.market_name)">{{ scope.row.market_name }}</span>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
-    <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
+    <div class="chart">
+      <vue-element-loading :active="isActive" spinner="bar-fade-scale" color="#FF6700" />
 
-    <div :id="id" :class="className" :style="{height:height,width:width}" />
+      <div :id="id" :class="className" :style="{height:height,width:width}" />
+    </div>
 
   </div>
 </template>
@@ -47,11 +51,11 @@ export default {
     },
     width: {
       type: String,
-      default: '1200px'
+      default: '1100px'
     },
     height: {
       type: String,
-      default: '600px'
+      default: '900px'
     }
   },
   data() {
@@ -113,11 +117,18 @@ export default {
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
+
         title: {
-          // text: data.market_name + "   " + data.side + "    " + data.start_time + " - " + data.end_time,
           text: data.market_name,
           left: 20
         },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
+          }
+        },
+
         toolbox: {
           show: true,
           feature: {
@@ -142,17 +153,14 @@ export default {
           }
         },
         calculable: true,
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'shadow'
-          }
-        },
+
         legend: {
           data: ['BUY', 'SELL', 'in', 'out']
         },
         grid: {
-          bottom: 90
+          bottom: 90,
+          left: 160
+
         },
         dataZoom: [{
           type: 'inside'
@@ -198,3 +206,16 @@ export default {
   }
 }
 </script>
+
+<style type="text/css">
+
+  .table{
+    width: 15%;
+    float: left;
+  }
+  .chart{
+    width: 83%;
+    float: left;
+  }
+
+</style>

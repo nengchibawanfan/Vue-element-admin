@@ -134,6 +134,7 @@ export default {
       // lineChartData['messages']['expectedData'] = data.deal_base_eth
       // lineChartData['purchases']['expectedData'] = data.eth_amount
       lineChartData['shoppings']['expectedData'] = data.indicator_value_base_value
+      lineChartData['purchases']['expectedData'] = data.eth_value
 
       lineChartData['newVisitis']['date'] = data.time
       lineChartData['messages']['date'] = data.time

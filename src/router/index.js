@@ -157,15 +157,34 @@ export const asyncRoutes = [
       }
     ]
   },
+  // {
+  //   path: '/exchange_activity',
+  //   component: Layout,
+  //   alwaysShow: true,
+  //   meta: { title: '交易所活跃度', icon: 'chart' },
+  //   children: [
+  //     {
+  //       path: '/realuser_chip_distribution',
+  //       component: () => import('@/views/realuser/chipDistribution'),
+  //       meta: { title: '各交易所盘口价差率', icon: 'icon' }
+  //     },
+  //     {
+  //       path: '/single_realuser_chip_distribution',
+  //       component: () => import('@/views/realuser/singleChipDistribution'),
+  //       meta: { title: '交易所市场深度', icon: 'icon' }
+  //     }
+  //   ]
+  // },
+
   {
     path: '/tradingVol',
     component: Layout,
-    // redirect: '/balance/show',
     alwaysShow: true,
     meta: { title: '交易统计', icon: 'chart' },
     children: [
       {
         path: 'allmarket',
+        name: 'allmarket',
         component: () => import('@/views/tradingVolume/allmarket'),
         meta: { title: '所有市场交易量' }
       },
@@ -191,6 +210,7 @@ export const asyncRoutes = [
 
       {
         path: 'realuser_num',
+        name: 'realuser_num',
         component: () => import('@/views/tradingVolume/realuser_num'),
         meta: { title: '真实用户交易人数' }
       }
@@ -223,6 +243,7 @@ export const asyncRoutes = [
       // },
       {
         path: 'totalETH',
+        name: 'totalETH',
         component: () => import('@/views/balance/totalETH'),
         meta: { title: '做市总ETH数量' }
       }
@@ -292,6 +313,7 @@ export const asyncRoutes = [
     children: [
       {
         path: '/marketmakeIndicator',
+        name: 'marketmakeIndicator',
         component: () => import('@/views/marketmakeIndicator/marketmakeIndicator'),
         meta: { title: '做市综合指数', icon: 'form' }
       }

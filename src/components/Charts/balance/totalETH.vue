@@ -116,7 +116,7 @@ export default {
         backgroundColor: '#394056',
         title: {
           top: 20,
-          text: '总净值',
+          text: '总净值（包含外部交易所和见证节点）',
           textStyle: {
             fontWeight: 'normal',
             fontSize: 16,

@@ -20,7 +20,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column :label="$t('价差')" width="250px" align="center">
+      <el-table-column :label="$t('盘口价差率 （价差 / 买一价）')" width="250px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.price_gap }}</span>
         </template>
@@ -35,6 +35,18 @@
       <el-table-column :label="$t('spread')" width="250px" align="center">
         <template slot-scope="scope">
           <span>{{ scope.row.spread }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('卖盘总价值（USDT）30%depth')" width="250px" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.ask_value_sum }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column :label="$t('买盘总价值（USDT）30%depth')" width="250px" align="center">
+        <template slot-scope="scope">
+          <span>{{ scope.row.bid_value_sum }}</span>
         </template>
       </el-table-column>
     </el-table>
