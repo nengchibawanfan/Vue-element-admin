@@ -30,7 +30,7 @@
 <script>
 
 import echarts from 'echarts'
-import realuserChipDistribution from '@/api/realuserChipDistribution.js'
+import { getRealuserChipDistribution, getRealuserChipDistributionInfo } from '@/api/realuserChipDistribution.js'
 import resize from '@/components/Charts/mixins/resize'
 import VueElementLoading from 'vue-element-loading'
 
@@ -84,12 +84,12 @@ export default {
   },
   methods: {
     getList() {
-      realuserChipDistribution.getRealuserChipDistribution().then(response => {
+      getRealuserChipDistribution().then(response => {
         // console.log(response)
 
-        this.tableData = response.data.items
+        this.tableData = response.items
 
-        this.total = response.data.total
+        this.total = response.total
 
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -105,7 +105,7 @@ export default {
         'market_name': marketName || 'MT/ETH'
         // "k": k || 100
       }
-      realuserChipDistribution.getRealuserChipDistributionInfo(params).then(res => {
+      getRealuserChipDistributionInfo(params).then(res => {
         console.log(res)
         self.handleRequest(res, self.drawChart)
         this.isActive = false
@@ -113,9 +113,7 @@ export default {
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))

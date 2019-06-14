@@ -5,6 +5,7 @@ export function login(data) {
     url: '/user/login',
     method: 'post',
     data
+    // baseURL: 'http://127.0.0.1:5001' // 直接通过覆盖的方式
   })
 }
 

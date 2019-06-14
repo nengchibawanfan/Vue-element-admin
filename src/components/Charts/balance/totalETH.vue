@@ -41,7 +41,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import balance from '@/api/balance.js'
+import { getTotalETH } from '@/api/balance.js'
 import VueElementLoading from 'vue-element-loading'
 
 export default {
@@ -98,16 +98,14 @@ export default {
         'start_time': self.start_time || '',
         'end_time': self.end_time || ''
       }
-      balance.getTotalETH(params).then(res => {
+      getTotalETH(params).then(res => {
         self.handleRequest(res, self.drawChart)
         this.isActive = false
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       console.log(data)

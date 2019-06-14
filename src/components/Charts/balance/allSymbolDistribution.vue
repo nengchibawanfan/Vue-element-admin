@@ -8,7 +8,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import balance from '@/api/balance.js'
+import { getAllSymbolBalance } from '@/api/balance.js'
 
 export default {
   mixins: [resize],
@@ -51,15 +51,13 @@ export default {
       const params = {
         'exchange': 'bytetrade'
       }
-      balance.getAllSymbolBalance(params).then(res => {
+      getAllSymbolBalance(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))

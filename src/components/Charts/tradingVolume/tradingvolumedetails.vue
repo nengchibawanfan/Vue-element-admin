@@ -8,7 +8,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import tradingVolume from '@/api/tradingVolume.js'
+import { getSomedayTradingVolume } from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
@@ -51,15 +51,13 @@ export default {
       const params = {
         'date': this.$route.params.date || ''
       }
-      tradingVolume.getSomedayTradingVolume(params).then(res => {
+      getSomedayTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))

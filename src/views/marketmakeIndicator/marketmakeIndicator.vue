@@ -5,7 +5,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import marketmakeIndicator from '@/api/marketmakeIndicator.js'
+import { marketmakeIndicator } from '@/api/marketmakeIndicator.js'
 // import VueElementLoading from 'vue-element-loading'
 
 export default {
@@ -57,9 +57,7 @@ export default {
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))

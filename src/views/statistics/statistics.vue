@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import statistics from '@/api/statistics.js'
+import { getStatistics } from '@/api/statistics.js'
 
 import waves from '@/directive/waves' // Waves directive
 
@@ -95,12 +95,12 @@ export default {
     getList() {
       this.listLoading = true
 
-      statistics.getStatistics().then(response => {
-        // console.log(response)
+      getStatistics().then(response => {
+        console.log(response)
 
-        this.tableData = response.data.items
+        this.tableData = response.items
 
-        this.total = response.data.total
+        this.total = response.total
 
         // Just to simulate the time of the request
         setTimeout(() => {

@@ -57,7 +57,7 @@
 
 <script>
 import CountTo from 'vue-count-to'
-import indexInfo from '@/api/indexInfo.js'
+import { getIndexInfo } from '@/api/indexInfo.js'
 
 export default {
 
@@ -83,15 +83,13 @@ export default {
     getdata() {
       const self = this
       const params = {}
-      indexInfo.getIndexInfo(params).then(res => {
+      getIndexInfo(params).then(res => {
         self.handleRequest(res, self.setData)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     setData(data) {
       console.log(data)

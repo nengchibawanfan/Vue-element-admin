@@ -40,7 +40,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import tradingVolume from '@/api/tradingVolume.js'
+import { getAllTradingVolume } from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
@@ -89,15 +89,13 @@ export default {
         'end_time': self.end_time || '',
         'interval': self.interval || '1d'
       }
-      tradingVolume.getAllTradingVolume(params).then(res => {
+      getAllTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       console.log(data)

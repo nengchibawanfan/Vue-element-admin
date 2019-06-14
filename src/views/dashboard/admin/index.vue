@@ -45,7 +45,7 @@
 import ByteTradeCorner from '@/components/ByteTradeCorner'
 import PanelGroup from './components/PanelGroup'
 import LineChart from './components/LineChart'
-import indexInfo from '@/api/indexInfo.js'
+import { getDetailIndexInfo } from '@/api/indexInfo.js'
 
 // import RaddarChart from './components/RaddarChart'
 // import PieChart from './components/PieChart'
@@ -114,15 +114,14 @@ export default {
     getdata() {
       const self = this
       const params = {}
-      indexInfo.getDetailIndexInfo(params).then(res => {
+      getDetailIndexInfo(params).then(res => {
         self.handleRequest(res, self.setData)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+
+      func(res)
     },
     setData(data) {
       lineChartData['newVisitis']['actualData'] = data.user_num

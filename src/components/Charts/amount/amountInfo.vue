@@ -11,7 +11,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import amountInfo from '@/api/amountInfo.js'
+import { getAmountInfo } from '@/api/amountInfo.js'
 import VueElementLoading from 'vue-element-loading'
 
 export default {
@@ -63,16 +63,15 @@ export default {
       const params = {
         'coin_name': this.$route.params.coinname || 'ETH'
       }
-      amountInfo.getAmountInfo(params).then(res => {
+      getAmountInfo(params).then(res => {
         self.handleRequest(res, self.drawChart)
         this.isActive = false
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+
+      func(res)
     },
     drawChart(data) {
       this.chart = echarts.init(document.getElementById(this.id))

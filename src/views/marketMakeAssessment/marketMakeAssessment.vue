@@ -60,7 +60,7 @@
 <script>
 
 import echarts from 'echarts'
-import marketMakeAssessment from '@/api/marketMakeAssessment.js'
+import { marketMakeAssessment } from '@/api/marketMakeAssessment.js'
 import resize from '@/components/Charts/mixins/resize'
 import VueElementLoading from 'vue-element-loading'
 
@@ -116,9 +116,9 @@ export default {
       marketMakeAssessment.getMarketMakeAssessment().then(response => {
         // console.log(response)
 
-        this.tableData = response.data.items
+        this.tableData = response.items
 
-        this.total = response.data.total
+        this.total = response.total
 
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -141,9 +141,7 @@ export default {
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       var series = []

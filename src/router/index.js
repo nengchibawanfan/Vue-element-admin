@@ -9,7 +9,7 @@ import Layout from '@/layout'
 /* Router Modules */
 // import componentsRouter from './modules/components'
 // import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
+// import tableRouter from './modules/table'
 // import nestedRouter from './modules/nested'
 
 /** note: sub-menu only appear when children.length>=1
@@ -124,7 +124,7 @@ export const asyncRoutes = [
         path: '/statistics',
 
         component: () => import('@/views/statistics/statistics'),
-        meta: { title: '做市总览', icon: 'icon' }
+        meta: { title: '资产总览', icon: 'icon' }
       }
     ]
   },
@@ -221,7 +221,7 @@ export const asyncRoutes = [
     component: Layout,
     // redirect: '/balance/show',
     alwaysShow: true,
-    meta: { title: '机器人资产统计', icon: 'peoples' },
+    meta: { title: '做市资产统计', icon: 'peoples' },
     children: [
       {
         // path: 'singleSymbol/exchange/:exchange/coinid/:coinid',
@@ -269,24 +269,24 @@ export const asyncRoutes = [
     ]
   },
 
-  {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/svg-icons/index'),
-        name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/icon',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/svg-icons/index'),
+  //       name: 'Icons',
+  //       meta: { title: 'icons', icon: 'icon', noCache: true }
+  //     }
+  //   ]
+  // },
 
   /** when your routing map is too long, you can split it into small modules **/
   // componentsRouter,
   // chartsRouter,
   // nestedRouter,
-  tableRouter,
+  // tableRouter,
 
   {
     path: '/amount_info',

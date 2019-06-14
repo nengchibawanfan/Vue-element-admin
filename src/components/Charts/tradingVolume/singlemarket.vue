@@ -29,7 +29,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import tradingVolume from '@/api/tradingVolume.js'
+import { getSingleMarketTradingVolume } from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
@@ -79,15 +79,13 @@ export default {
         'start_time': self.start_time || '',
         'end_time': self.end_time || ''
       }
-      tradingVolume.getSingleMarketTradingVolume(params).then(res => {
+      getSingleMarketTradingVolume(params).then(res => {
         self.handleRequest(res, self.drawChart)
       })
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
       // console.log(data.all["all_deal"])

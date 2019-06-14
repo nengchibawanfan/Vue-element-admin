@@ -29,7 +29,7 @@
 <script>
 
 import echarts from 'echarts'
-import realuserChipDistribution from '@/api/realuserChipDistribution.js'
+import { realuserChipDistribution } from '@/api/realuserChipDistribution.js'
 import resize from '@/components/Charts/mixins/resize'
 import VueElementLoading from 'vue-element-loading'
 
@@ -84,9 +84,9 @@ export default {
       realuserChipDistribution.getRealuserChipDistribution().then(response => {
         // console.log(response)
 
-        this.tableData = response.data.items
+        this.tableData = response.items
 
-        this.total = response.data.total
+        this.total = response.total
 
         // Just to simulate the time of the request
         setTimeout(() => {
@@ -110,12 +110,10 @@ export default {
     },
     handleRequest(res, func) {
       typeof res === 'object' ? res : JSON.parse(res)
-      if (res.status === 200) {
-        func(res.data)
-      }
+      func(res)
     },
     drawChart(data) {
-      this.chart = echarts.init(document.getElementById(this.id))
+      this.chart = echarts.init(document.getElementÏById(this.id))
       this.chart.setOption({
 
         title: {
