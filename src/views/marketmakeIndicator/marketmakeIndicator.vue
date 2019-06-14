@@ -5,7 +5,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import { marketmakeIndicator } from '@/api/marketmakeIndicator.js'
+import { getMarketmakeIndicator } from '@/api/marketmakeIndicator.js'
 // import VueElementLoading from 'vue-element-loading'
 
 export default {
@@ -50,7 +50,7 @@ export default {
       this.isActive = true
 
       const params = {}
-      marketmakeIndicator.getMarketmakeIndicator(params).then(res => {
+      getMarketmakeIndicator(params).then(res => {
         self.handleRequest(res, self.drawChart)
         this.isActive = false
       })

@@ -8,7 +8,7 @@ import Qs from 'qs'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
   withCredentials: true, // 跨域请求时发送 cookies
-  timeout: 5000, // request timeout
+  timeout: 50000, // request timeout
   transformRequest: [function(data) {
     // 对 data 进行任意转换处理
     return Qs.stringify(data)

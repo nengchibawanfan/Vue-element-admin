@@ -29,7 +29,7 @@
 <script>
 
 import echarts from 'echarts'
-import { realuserChipDistribution } from '@/api/realuserChipDistribution.js'
+import { getRealuserChipDistribution, getSingleRealuserChipDistributionInfo } from '@/api/realuserChipDistribution.js'
 import resize from '@/components/Charts/mixins/resize'
 import VueElementLoading from 'vue-element-loading'
 
@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     getList() {
-      realuserChipDistribution.getRealuserChipDistribution().then(response => {
+      getRealuserChipDistribution().then(response => {
         // console.log(response)
 
         this.tableData = response.items
@@ -102,7 +102,7 @@ export default {
         'market_name': marketName || 'MT/ETH'
         // "k": k || 100
       }
-      realuserChipDistribution.getSingleRealuserChipDistributionInfo(params).then(res => {
+      getSingleRealuserChipDistributionInfo(params).then(res => {
         console.log(res)
         self.handleRequest(res, self.drawChart)
         this.isActive = false
@@ -113,7 +113,7 @@ export default {
       func(res)
     },
     drawChart(data) {
-      this.chart = echarts.init(document.getElementÏById(this.id))
+      this.chart = echarts.init(document.getElementById(this.id))
       this.chart.setOption({
 
         title: {

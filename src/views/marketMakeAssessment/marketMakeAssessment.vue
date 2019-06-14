@@ -60,7 +60,7 @@
 <script>
 
 import echarts from 'echarts'
-import { marketMakeAssessment } from '@/api/marketMakeAssessment.js'
+import { getMarketMakeAssessment, getMarketMakeAssessmentInfo } from '@/api/marketMakeAssessment.js'
 import resize from '@/components/Charts/mixins/resize'
 import VueElementLoading from 'vue-element-loading'
 
@@ -113,7 +113,7 @@ export default {
   },
   methods: {
     getList() {
-      marketMakeAssessment.getMarketMakeAssessment().then(response => {
+      getMarketMakeAssessment().then(response => {
         // console.log(response)
 
         this.tableData = response.items
@@ -133,7 +133,7 @@ export default {
       var params = {
         'market_name': marketName || 'MT/ETH'
       }
-      marketMakeAssessment.getMarketMakeAssessmentInfo(params).then(res => {
+      getMarketMakeAssessmentInfo(params).then(res => {
         console.log(res)
         self.handleRequest(res, self.drawChart)
         this.isActive = false

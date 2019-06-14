@@ -40,7 +40,7 @@
 <script>
 import echarts from 'echarts'
 import resize from '@/components/Charts/mixins/resize'
-import getRealuserNum from '@/api/tradingVolume.js'
+import { getRealuserNum } from '@/api/tradingVolume.js'
 
 export default {
   mixins: [resize],
