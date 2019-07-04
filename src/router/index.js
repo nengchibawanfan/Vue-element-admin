@@ -82,31 +82,6 @@ export const constantRoutes = [
         meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
       }
     ]
-  // },
-  // {
-  //   path: '/documentation',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/documentation/index'),
-  //       name: 'Documentation',
-  //       meta: { title: 'documentation', icon: 'documentation', affix: true }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/guide',
-  //   component: Layout,
-  //   redirect: '/guide/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/guide/index'),
-  //       name: 'Guide',
-  //       meta: { title: 'guide', icon: 'guide', noCache: true }
-  //     }
-  //   ]
   }
 ]
 
@@ -128,17 +103,17 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/market_make_assessment',
-    component: Layout,
-    children: [
-      {
-        path: '/market_make_assessment',
-        component: () => import('@/views/marketMakeAssessment/marketMakeAssessment'),
-        meta: { title: '做市深度评价指标', icon: 'icon' }
-      }
-    ]
-  },
+  // {
+  //   path: '/market_make_assessment',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/market_make_assessment',
+  //       component: () => import('@/views/marketMakeAssessment/marketMakeAssessment'),
+  //       meta: { title: '做市深度评价指标', icon: 'icon' }
+  //     }
+  //   ]
+  // },
   {
     path: '/realuser_chip_distribution',
     component: Layout,
@@ -318,7 +293,65 @@ export const asyncRoutes = [
         meta: { title: '做市综合指数', icon: 'form' }
       }
     ]
+  },
+
+  {
+    path: '/marketmakecontral',
+    // hidden: true,
+    // 隐藏起来
+    component: Layout,
+    children: [
+      {
+        path: '/marketmakecontral',
+        name: 'marketmakecontral',
+        component: () => import('@/views/marketmakecontral/marketmakecontral'),
+        meta: { title: '做市系统控制', icon: 'form' }
+      }
+    ]
+  },
+
+  {
+    path: '/accountInfo',
+    // hidden: true,
+    // 隐藏起来
+    component: Layout,
+    children: [
+      {
+        path: '/accountInfo',
+        name: 'accountInfo',
+        component: () => import('@/views/accountInfo/accountInfo'),
+        meta: { title: '账户信息（修改密码，充值地址）', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/marketmakeraccount',
+    // hidden: true,
+    // 隐藏起来
+    component: Layout,
+    children: [
+      {
+        path: '/marketmakeraccount',
+        name: 'marketmakeraccount',
+        component: () => import('@/views/marketmakeraccount/marketmakeraccount'),
+        meta: { title: '做市账户', icon: 'form' }
+      }
+    ]
   }
+  // {
+  //   path: '/registmarketmakeaccount',
+  //   // hidden: true,
+  //   // 隐藏起来
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/registmarketmakeaccount',
+  //       name: 'registmarketmakeaccount',
+  //       component: () => import('@/views/marketmakeraccount/marketmakeraccount'),
+  //       meta: { title: '做市账户', icon: 'form' }
+  //     }
+  //   ]
+  // },
 
   // // 真实用户数量展示
   // {
@@ -338,7 +371,7 @@ export const asyncRoutes = [
   //   component: Layout,
   //   children: [
   //     {
-  //       path: '/realuser_trading_volume_info',
+  //       path: '/realuser_trading_volume_info',Ï
   //       component: () => import('@/views/realuser/tradingVolume'),
   //       meta: { title: '真实用户交易量详情', icon: 'form' }
   //     }
